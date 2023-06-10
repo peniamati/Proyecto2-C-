@@ -21,17 +21,17 @@ namespace Proyecto2
                 case "1. Dar de alta un Tesla y SpaceX.":
                     new Alta().Show();
                     break;
-                //case "2. Eliminar un Tesla y SpaceX.":
-                //    new Eliminar().show;
-                //    break;
-                //case "3. Mostrar el Tesla mas viejo.":
-                //    new MasViejo().show;
-                //    break;
-                //case "4. Escaneo de un vehículo.":
-                //    new Escaneo();
-                //    break;
+                case "2. Eliminar un Tesla y SpaceX.":
+                    new Eliminar().Show();
+                    break;
+                case "3. Mostrar el Tesla mas viejo.":
+                    new MasViejo().Show();
+                    break;
+                case "4. Escaneo de un vehículo.":
+                    new Escaneo().Show();
+                    break;
             }
-            
+
 
         }
 

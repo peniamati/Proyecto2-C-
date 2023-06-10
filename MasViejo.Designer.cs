@@ -28,12 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasViejo));
+            label1 = new Label();
+            mas_viejo = new Label();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(83, 38);
+            label1.Name = "label1";
+            label1.Size = new Size(117, 15);
+            label1.TabIndex = 0;
+            label1.Text = "El Tesla mas viejo es: ";
+            // 
+            // mas_viejo
+            // 
+            mas_viejo.AutoSize = true;
+            mas_viejo.Location = new Point(206, 38);
+            mas_viejo.Name = "mas_viejo";
+            mas_viejo.Size = new Size(38, 15);
+            mas_viejo.TabIndex = 1;
+            mas_viejo.Text = "label2";
+            // 
+            // MasViejo
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(318, 97);
+            Controls.Add(mas_viejo);
+            Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "MasViejo";
+            Text = "Mas Viejo";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
+        private Label mas_viejo;
     }
 }

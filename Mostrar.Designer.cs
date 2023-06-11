@@ -29,19 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mostrar));
-            dataGridView1 = new DataGridView();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            lista_mostrada = new ListView();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(152, 86);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(240, 150);
-            dataGridView1.TabIndex = 0;
             // 
             // label1
             // 
@@ -52,24 +42,30 @@
             label1.TabIndex = 1;
             label1.Text = "Cantidad de carga de baterias de los vehiculos";
             // 
+            // lista_mostrada
+            // 
+            lista_mostrada.Location = new Point(207, 93);
+            lista_mostrada.Name = "lista_mostrada";
+            lista_mostrada.Size = new Size(121, 97);
+            lista_mostrada.TabIndex = 2;
+            lista_mostrada.UseCompatibleStateImageBehavior = false;
+            // 
             // Mostrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(580, 288);
+            Controls.Add(lista_mostrada);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Mostrar";
             Text = "Carga de baterias";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dataGridView1;
         private Label label1;
+        private ListView lista_mostrada;
     }
 }

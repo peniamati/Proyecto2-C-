@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Proyecto2
 {
@@ -29,7 +30,44 @@ namespace Proyecto2
     
         }
     }
-   
+    public class PrintAttributes
+    {
+        private readonly Dictionary<string, object> attributes = new Dictionary<string, object>();
+
+        public PrintAttributes(params object[] args)
+        {
+            foreach (var arg in args)
+            {
+                attributes.Add(arg.GetType().Name, arg);
+            }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var kvp in attributes)
+            {
+                builder.Append($"{kvp.Key}: {kvp.Value}\n");
+            }
+            return builder.ToString();
+        }
+
+        public static PrintAttributes FromList(List<object> list)
+        {
+            var args = new object[list.Count];
+            for (int i = 0; i < list.Count; i++)
+            {
+                args[i] = list[i];
+            }
+            return new PrintAttributes(args);
+        }
+
+        internal static object FromList(List<Vehiculo> vehiculos)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class Vehiculo
     {
         int anio;
@@ -47,7 +85,11 @@ namespace Proyecto2
         {
             return color;
         }
-        
+        public virtual double calcularBateria()
+        {
+            return 1.23;
+        }
+
     }
 
     public class Tesla : Vehiculo
@@ -56,6 +98,7 @@ namespace Proyecto2
         int asientos;
         int autonomia;
         int service;
+        string modelo;
         string duenio;
         
         const int autonomiaX = 560;
@@ -71,26 +114,52 @@ namespace Proyecto2
         public Tesla(int anio, string color, int kilometraje, string duenio, string modelo) : base(anio, color)
         {
             this.kilometraje = kilometraje;
-            this.duenio = duenio;  
+            this.duenio = duenio;
+            this.modelo = modelo;
             if (modelo == "X")
             {
-                autonomia = autonomiaX;
-                asientos = asientosX;
-                service = serviceX;
+                this.autonomia = autonomiaX;
+                this.asientos = asientosX;
+                this.service = serviceX;
             }
             else if (modelo == "S")
             {
-                autonomia = autonomiaS;
-                asientos = asientosS;
-                service = serviceS;
+                this.autonomia = autonomiaS;
+                this.asientos = asientosS;
+                this.service = serviceS;
             }
             else if (modelo == "Cybertruck")
             {
-                autonomia = autonomiaCybertruck;
-                asientos = asientosCybertruck;
-                service = serviceCybertruck;
+                this.autonomia = autonomiaCybertruck;
+                this.asientos = asientosCybertruck;
+                this.service = serviceCybertruck;
             }
         }
+        public int getKilometraje()
+        {
+            return this.kilometraje;
+        }
+        public string getDuenio()
+        {
+            return this.duenio;
+        }
+        public string getModelo()
+        {
+            return this.modelo;
+        }
+        public int getAsientos()
+        {
+            return this.asientos;
+        }
+        public int getService()
+        {
+            return this.service;
+        }
+        public override double calcularBateria()
+        {
+            return ((kilometraje / autonomia) - (kilometraje / autonomia)) * 100;
+        }
+
 
     }
 
@@ -110,14 +179,18 @@ namespace Proyecto2
             this.empresa = empresa;
             if (modelo == "Starship")
             {
-                autonomia = autonomiaStarship;
-                service = serviceStarship;
+                this.autonomia = autonomiaStarship;
+                this.service = serviceStarship;
             }
             else if (modelo == "Falcon 9")
             {
-                autonomia = autonomiaFalcon9;
-                service = serviceFalcon9;
+                this.autonomia = autonomiaFalcon9;
+                this.service = serviceFalcon9;
             }
+        }
+        public override double calcularBateria()
+        {
+            return ((horasDeVuelo / autonomia) - (horasDeVuelo / autonomia)) * 100;
         }
     }
 }

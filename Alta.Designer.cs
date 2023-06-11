@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alta));
             tipo_vehiculo = new Label();
             textBox1 = new TextBox();
             anio = new Label();
@@ -165,7 +166,7 @@
             boton_alta.TabIndex = 11;
             boton_alta.Text = "Dar de alta";
             boton_alta.UseVisualStyleBackColor = true;
-            boton_alta.Click += button2_Click;
+            boton_alta.Click += boton_alta_Click;
             // 
             // boton_limpiar
             // 
@@ -217,9 +218,10 @@
             Controls.Add(anio);
             Controls.Add(textBox1);
             Controls.Add(tipo_vehiculo);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "Alta";
-            Text = "Form2";
+            Text = "Alta de Vehiculo";
             Load += Alta_Load;
             ResumeLayout(false);
             PerformLayout();

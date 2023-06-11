@@ -30,6 +30,8 @@ namespace Proyecto2
                 case "4. Escaneo de un vehículo.":
                     new Escaneo().Show();
                     break;
+                //case "5. Mostrar la cantidad de carga de baterias combustible de todos los vehiculos":
+                //    new Mostrar().Show();
             }
 
 

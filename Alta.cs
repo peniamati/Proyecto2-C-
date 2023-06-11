@@ -89,14 +89,7 @@ namespace Proyecto2
             selector_modelo.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //if(comboBox1.SelectedItem.ToString() == Tesla)
-            //{
-            //    Tesla tesla = new Tesla()
-            //}
-            //teslas.append(tesla);
-        }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -120,8 +113,8 @@ namespace Proyecto2
         {
             modelo.Show();
             selector_modelo.Show();
-            
-            
+
+
             string gettext = selector_tipo.SelectedItem.ToString();
 
             if (gettext == "SpaceX")
@@ -144,8 +137,27 @@ namespace Proyecto2
                     selector_modelo.Items.Add("Cybertruck");
                     selector_modelo.Items.Remove("Starship");
                     selector_modelo.Items.Remove("Falcon 9");
-                }   
+                }
             }
+        }
+
+        private void boton_alta_Click(object sender, EventArgs e)
+        {
+            string gettext = selector_tipo.SelectedItem.ToString();
+            if (gettext == "Tesla")
+            {
+                int anio = Int32.Parse(textBox1.Text);
+                int kilometraje = Int32.Parse(textBox2.Text);
+                string color = textBox3.Text;
+                string duenio = textBox4.Text;
+                string modelo = selector_modelo.SelectedItem.ToString();
+                Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
+                Program.vehiculos.Add(tesla);
+            }
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
         }
     }
 }

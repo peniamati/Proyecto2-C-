@@ -50,6 +50,7 @@
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(39, 212);
             comboBox1.Margin = new Padding(4, 5, 4, 5);
@@ -78,7 +79,7 @@
             label2.Text = "Para comenzar elija una opción";
             label2.Click += label2_Click;
             // 
-            // Form1
+            // Inicio
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -89,7 +90,7 @@
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
-            Name = "Form1";
+            Name = "Inicio";
             Text = "SpaceX";
             Load += Form1_Load;
             ResumeLayout(false);

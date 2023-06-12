@@ -85,22 +85,19 @@ namespace Proyecto2
         {
             return color;
         }
-        public virtual double calcularBateria()
-        {
-            return 1.23;
-        }
 
     }
 
     public class Tesla : Vehiculo
     {
-        int kilometraje;  
+        double kilometraje;  
         int asientos;
         int autonomia;
         int service;
         string modelo;
         string duenio;
-        
+        double carga;
+
         const int autonomiaX = 560;
         const int asientosX = 7;
         const int serviceX = 1000;
@@ -111,33 +108,37 @@ namespace Proyecto2
         const int asientosCybertruck = 6;
         const int serviceCybertruck = 3000;
 
-        public Tesla(int anio, string color, int kilometraje, string duenio, string modelo) : base(anio, color)
+        public Tesla(int anio, string color, double kilometraje, string duenio, string modelo) : base(anio, color)
         {
             this.kilometraje = kilometraje;
             this.duenio = duenio;
             this.modelo = modelo;
-            if (modelo == "X")
+            if (this.modelo == "Modelo X")
             {
                 this.autonomia = autonomiaX;
                 this.asientos = asientosX;
                 this.service = serviceX;
             }
-            else if (modelo == "S")
+            else if (this.modelo == "Modelo S")
             {
                 this.autonomia = autonomiaS;
                 this.asientos = asientosS;
                 this.service = serviceS;
             }
-            else if (modelo == "Cybertruck")
+            else if (this.modelo == "Cybertruck")
             {
                 this.autonomia = autonomiaCybertruck;
                 this.asientos = asientosCybertruck;
                 this.service = serviceCybertruck;
             }
         }
-        public int getKilometraje()
+        public double getKilometraje()
         {
             return this.kilometraje;
+        }
+        public int getAutonomia()
+        {
+            return this.autonomia;
         }
         public string getDuenio()
         {
@@ -155,9 +156,9 @@ namespace Proyecto2
         {
             return this.service;
         }
-        public override double calcularBateria()
+        public double calcularBateria()
         {
-            return ((kilometraje / autonomia) - (kilometraje / autonomia)) * 100;
+            return Math.Truncate((Math.Ceiling(Convert.ToDouble(kilometraje / autonomia)) - Math.Round(Convert.ToDouble(kilometraje / autonomia),2)) * 100);
         }
 
 
@@ -167,16 +168,18 @@ namespace Proyecto2
     {
         int autonomia;
         int service;
-        int horasDeVuelo;
+        double horasDeVuelo;
         string empresa;
+        string modelo;
         const int autonomiaStarship = 500;
         const int serviceStarship = 1000;
         const int autonomiaFalcon9 = 200;
         const int serviceFalcon9 = 400;
-        public SpaceX(int anio, string color, int horasDeVuelo, string empresa, string modelo) : base(anio, color)
+        public SpaceX(int anio, string color, double horasDeVuelo, string empresa, string modelo) : base(anio, color)
         {
             this.horasDeVuelo = horasDeVuelo;
             this.empresa = empresa;
+            this.modelo = modelo;
             if (modelo == "Starship")
             {
                 this.autonomia = autonomiaStarship;
@@ -188,9 +191,29 @@ namespace Proyecto2
                 this.service = serviceFalcon9;
             }
         }
-        public override double calcularBateria()
+        public int getAutonomia()
         {
-            return ((horasDeVuelo / autonomia) - (horasDeVuelo / autonomia)) * 100;
+            return this.autonomia;
+        }
+        public int getService()
+        {
+            return this.service;
+        }
+        public double getHorasDeVuelo()
+        {
+            return this.horasDeVuelo;
+        }
+        public string getEmpresa()
+        {
+            return this.empresa;
+        }
+        public string getModelo()
+        {
+            return this.modelo;
+        }
+        public double calcularBateria()
+        {
+            return Math.Truncate((Math.Ceiling(Convert.ToDouble(horasDeVuelo / autonomia)) - Math.Round(Convert.ToDouble(horasDeVuelo / autonomia), 2)) * 100);
         }
     }
 }

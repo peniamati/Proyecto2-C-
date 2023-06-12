@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Proyecto2
 {
@@ -75,6 +76,7 @@ namespace Proyecto2
         private void Alta_Load(object sender, EventArgs e)
         {
             tipo_vehiculo.Show();
+            boton_seleccionar.Hide();
             anio.Hide();
             kilometraje_horas.Hide();
             color.Hide();
@@ -99,18 +101,26 @@ namespace Proyecto2
             textBox4.Text = "";
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            boton_seleccionar.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            boton_seleccionar.Hide();
+            anio.Hide();
+            kilometraje_horas.Hide();
+            color.Hide();
+            duenio_empresa.Hide();
+            textBox1.Hide();
+            textBox2.Hide();
+            textBox3.Hide();
+            textBox4.Hide();
+            boton_alta.Hide();
+            boton_limpiar.Hide();
+            modelo.Hide();
+            selector_modelo.Hide();
             modelo.Show();
             selector_modelo.Show();
 
@@ -146,18 +156,54 @@ namespace Proyecto2
             string gettext = selector_tipo.SelectedItem.ToString();
             if (gettext == "Tesla")
             {
-                int anio = Int32.Parse(textBox1.Text);
-                int kilometraje = Int32.Parse(textBox2.Text);
-                string color = textBox3.Text;
-                string duenio = textBox4.Text;
-                string modelo = selector_modelo.SelectedItem.ToString();
-                Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
-                Program.vehiculos.Add(tesla);
+                try
+                {
+                    int anio = Int32.Parse(textBox1.Text);
+                    double kilometraje = Convert.ToDouble(textBox2.Text);
+                    string color = textBox3.Text;
+                    string duenio = textBox4.Text;
+                    string modelo = selector_modelo.SelectedItem.ToString();
+                    if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(duenio))
+                    {
+                        throw new Exception("Error");
+                    }
+                    Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
+                    Program.vehiculos.Add(tesla);
+                }
+                catch
+                {
+                    // Display an error message.
+                    MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else if (gettext == "SpaceX")
+            {
+                try
+                {
+                    int anio = Int32.Parse(textBox1.Text);
+                    double horasDeVuelo = Convert.ToDouble(textBox2.Text);
+                    string color = textBox3.Text;
+                    string empresa = textBox4.Text;
+                    string modelo = selector_modelo.SelectedItem.ToString();
+                    if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(empresa))
+                    {
+                        throw new Exception("Error");
+                    }
+                    SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
+                    Program.vehiculos.Add(spaceX);
+                }
+                catch
+                {
+                    // Display an error message.
+                    MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
             textBox4.Text = "";
+            textBox1.Select();
         }
+
     }
 }

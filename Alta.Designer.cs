@@ -49,70 +49,63 @@
             // tipo_vehiculo
             // 
             tipo_vehiculo.AutoSize = true;
-            tipo_vehiculo.Location = new Point(212, 9);
-            tipo_vehiculo.Margin = new Padding(2, 0, 2, 0);
+            tipo_vehiculo.Location = new Point(303, 15);
             tipo_vehiculo.Name = "tipo_vehiculo";
-            tipo_vehiculo.Size = new Size(128, 15);
+            tipo_vehiculo.Size = new Size(192, 25);
             tipo_vehiculo.TabIndex = 0;
             tipo_vehiculo.Text = "Elija el tipo de vehiculo";
-            tipo_vehiculo.Click += label1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(264, 183);
-            textBox1.Margin = new Padding(2);
+            textBox1.Location = new Point(377, 305);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Ingrese año del vehiculo";
-            textBox1.Size = new Size(145, 23);
-            textBox1.TabIndex = 1;
+            textBox1.Size = new Size(205, 31);
+            textBox1.TabIndex = 3;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // anio
             // 
             anio.AutoSize = true;
-            anio.Location = new Point(141, 183);
-            anio.Margin = new Padding(2, 0, 2, 0);
+            anio.Location = new Point(201, 305);
             anio.Name = "anio";
-            anio.Size = new Size(29, 15);
+            anio.Size = new Size(45, 25);
             anio.TabIndex = 2;
             anio.Text = "Año";
             anio.Click += label2_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(264, 222);
-            textBox2.Margin = new Padding(2);
+            textBox2.Location = new Point(377, 370);
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Ingrese kilometraje";
-            textBox2.Size = new Size(145, 23);
-            textBox2.TabIndex = 3;
+            textBox2.Size = new Size(205, 31);
+            textBox2.TabIndex = 4;
             // 
             // selector_tipo
             // 
+            selector_tipo.DropDownStyle = ComboBoxStyle.DropDownList;
             selector_tipo.FormattingEnabled = true;
-            selector_tipo.Location = new Point(212, 39);
-            selector_tipo.Margin = new Padding(2);
+            selector_tipo.Location = new Point(303, 65);
             selector_tipo.Name = "selector_tipo";
-            selector_tipo.Size = new Size(134, 23);
-            selector_tipo.TabIndex = 4;
+            selector_tipo.Size = new Size(190, 33);
+            selector_tipo.TabIndex = 1;
             selector_tipo.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // kilometraje_horas
             // 
             kilometraje_horas.AutoSize = true;
-            kilometraje_horas.Location = new Point(115, 225);
-            kilometraje_horas.Margin = new Padding(2, 0, 2, 0);
+            kilometraje_horas.Location = new Point(164, 375);
             kilometraje_horas.Name = "kilometraje_horas";
-            kilometraje_horas.Size = new Size(102, 15);
+            kilometraje_horas.Size = new Size(151, 25);
             kilometraje_horas.TabIndex = 5;
             kilometraje_horas.Text = "Kilometraje actual";
             // 
             // boton_seleccionar
             // 
-            boton_seleccionar.Location = new Point(239, 147);
-            boton_seleccionar.Margin = new Padding(2);
+            boton_seleccionar.Location = new Point(341, 245);
             boton_seleccionar.Name = "boton_seleccionar";
-            boton_seleccionar.Size = new Size(77, 22);
+            boton_seleccionar.Size = new Size(110, 37);
             boton_seleccionar.TabIndex = 6;
             boton_seleccionar.Text = "Seleccionar";
             boton_seleccionar.UseVisualStyleBackColor = true;
@@ -120,29 +113,26 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(264, 261);
-            textBox3.Margin = new Padding(2);
+            textBox3.Location = new Point(377, 435);
             textBox3.Name = "textBox3";
             textBox3.PlaceholderText = "Ingrese color";
-            textBox3.Size = new Size(145, 23);
-            textBox3.TabIndex = 7;
+            textBox3.Size = new Size(205, 31);
+            textBox3.TabIndex = 5;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(264, 297);
-            textBox4.Margin = new Padding(2);
+            textBox4.Location = new Point(377, 495);
             textBox4.Name = "textBox4";
             textBox4.PlaceholderText = "Ingrese dueño";
-            textBox4.Size = new Size(145, 23);
-            textBox4.TabIndex = 8;
+            textBox4.Size = new Size(205, 31);
+            textBox4.TabIndex = 6;
             // 
             // color
             // 
             color.AutoSize = true;
-            color.Location = new Point(141, 264);
-            color.Margin = new Padding(2, 0, 2, 0);
+            color.Location = new Point(201, 440);
             color.Name = "color";
-            color.Size = new Size(36, 15);
+            color.Size = new Size(55, 25);
             color.TabIndex = 9;
             color.Text = "Color";
             color.Click += label4_Click;
@@ -150,59 +140,60 @@
             // duenio_empresa
             // 
             duenio_empresa.AutoSize = true;
-            duenio_empresa.Location = new Point(141, 300);
-            duenio_empresa.Margin = new Padding(2, 0, 2, 0);
+            duenio_empresa.Location = new Point(201, 500);
             duenio_empresa.Name = "duenio_empresa";
-            duenio_empresa.Size = new Size(42, 15);
+            duenio_empresa.Size = new Size(65, 25);
             duenio_empresa.TabIndex = 10;
             duenio_empresa.Text = "Dueño";
             duenio_empresa.Click += label5_Click;
             // 
             // boton_alta
             // 
-            boton_alta.Location = new Point(190, 336);
+            boton_alta.Location = new Point(271, 560);
+            boton_alta.Margin = new Padding(4, 5, 4, 5);
             boton_alta.Name = "boton_alta";
-            boton_alta.Size = new Size(75, 23);
-            boton_alta.TabIndex = 11;
+            boton_alta.Size = new Size(107, 38);
+            boton_alta.TabIndex = 7;
             boton_alta.Text = "Dar de alta";
             boton_alta.UseVisualStyleBackColor = true;
             boton_alta.Click += boton_alta_Click;
             // 
             // boton_limpiar
             // 
-            boton_limpiar.Location = new Point(271, 336);
+            boton_limpiar.Location = new Point(387, 560);
+            boton_limpiar.Margin = new Padding(4, 5, 4, 5);
             boton_limpiar.Name = "boton_limpiar";
-            boton_limpiar.Size = new Size(75, 23);
-            boton_limpiar.TabIndex = 12;
+            boton_limpiar.Size = new Size(107, 38);
+            boton_limpiar.TabIndex = 8;
             boton_limpiar.Text = "Limpiar";
             boton_limpiar.UseVisualStyleBackColor = true;
             boton_limpiar.Click += button3_Click;
             // 
             // selector_modelo
             // 
+            selector_modelo.DropDownStyle = ComboBoxStyle.DropDownList;
             selector_modelo.FormattingEnabled = true;
-            selector_modelo.Location = new Point(212, 111);
-            selector_modelo.Margin = new Padding(2);
+            selector_modelo.Location = new Point(303, 185);
             selector_modelo.Name = "selector_modelo";
-            selector_modelo.Size = new Size(134, 23);
-            selector_modelo.TabIndex = 13;
+            selector_modelo.Size = new Size(190, 33);
+            selector_modelo.TabIndex = 2;
             selector_modelo.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // modelo
             // 
             modelo.AutoSize = true;
-            modelo.Location = new Point(232, 81);
-            modelo.Margin = new Padding(2, 0, 2, 0);
+            modelo.Location = new Point(331, 135);
             modelo.Name = "modelo";
-            modelo.Size = new Size(84, 15);
+            modelo.Size = new Size(127, 25);
             modelo.TabIndex = 14;
             modelo.Text = "Elija el modelo";
             // 
             // Alta
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = boton_alta;
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 371);
+            ClientSize = new Size(800, 618);
             Controls.Add(modelo);
             Controls.Add(selector_modelo);
             Controls.Add(boton_limpiar);
@@ -219,7 +210,6 @@
             Controls.Add(textBox1);
             Controls.Add(tipo_vehiculo);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2);
             Name = "Alta";
             Text = "Alta de Vehiculo";
             Load += Alta_Load;

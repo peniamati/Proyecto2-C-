@@ -38,35 +38,41 @@
             // eliminar_vehiculo
             // 
             eliminar_vehiculo.AutoSize = true;
-            eliminar_vehiculo.Location = new Point(190, 27);
+            eliminar_vehiculo.Location = new Point(271, 45);
+            eliminar_vehiculo.Margin = new Padding(4, 0, 4, 0);
             eliminar_vehiculo.Name = "eliminar_vehiculo";
-            eliminar_vehiculo.Size = new Size(115, 15);
+            eliminar_vehiculo.Size = new Size(169, 25);
             eliminar_vehiculo.TabIndex = 0;
             eliminar_vehiculo.Text = "Eliminar un vehiculo";
             // 
             // selector_tipo
             // 
+            selector_tipo.DropDownStyle = ComboBoxStyle.DropDownList;
             selector_tipo.FormattingEnabled = true;
-            selector_tipo.Location = new Point(190, 60);
+            selector_tipo.Location = new Point(271, 100);
+            selector_tipo.Margin = new Padding(4, 5, 4, 5);
             selector_tipo.Name = "selector_tipo";
-            selector_tipo.Size = new Size(121, 23);
+            selector_tipo.Size = new Size(171, 33);
             selector_tipo.TabIndex = 1;
             // 
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(126, 136);
+            dataGridView2.Location = new Point(180, 227);
+            dataGridView2.Margin = new Padding(4, 5, 4, 5);
             dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 62;
             dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(240, 150);
+            dataGridView2.Size = new Size(343, 250);
             dataGridView2.TabIndex = 3;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // boton_eliminar
             // 
-            boton_eliminar.Location = new Point(211, 331);
+            boton_eliminar.Location = new Point(301, 552);
+            boton_eliminar.Margin = new Padding(4, 5, 4, 5);
             boton_eliminar.Name = "boton_eliminar";
-            boton_eliminar.Size = new Size(75, 23);
+            boton_eliminar.Size = new Size(107, 38);
             boton_eliminar.TabIndex = 4;
             boton_eliminar.Text = "Eliminar";
             boton_eliminar.UseVisualStyleBackColor = true;
@@ -74,13 +80,14 @@
             // 
             // Eliminar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(513, 450);
+            ClientSize = new Size(733, 750);
             Controls.Add(boton_eliminar);
             Controls.Add(dataGridView2);
             Controls.Add(selector_tipo);
             Controls.Add(eliminar_vehiculo);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Eliminar";
             Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();

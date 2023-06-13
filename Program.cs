@@ -8,6 +8,8 @@ namespace Proyecto2
     internal static class Program
     {
         public static double kilometrajeEscaneo;
+        public static string modeloEscaneo;
+        public static string modeloEliminar;
         public static List<Vehiculo> vehiculos = new List<Vehiculo>();
 
         /// <summary>
@@ -24,11 +26,6 @@ namespace Proyecto2
             ApplicationConfiguration.Initialize();
             Application.Run(new Inicio());
 
-            
-
-
-
-    
         }
     }
     public class PrintAttributes

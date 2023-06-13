@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Eliminar));
             eliminar_vehiculo = new Label();
             selector_tipo = new ComboBox();
-            dataGridView2 = new DataGridView();
             boton_eliminar = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            tabla = new ListView();
+            duenio = new ColumnHeader();
+            modelo = new ColumnHeader();
+            kilometraje = new ColumnHeader();
+            boton_seleccionar = new Button();
             SuspendLayout();
             // 
             // eliminar_vehiculo
             // 
             eliminar_vehiculo.AutoSize = true;
-            eliminar_vehiculo.Location = new Point(271, 45);
-            eliminar_vehiculo.Margin = new Padding(4, 0, 4, 0);
+            eliminar_vehiculo.Location = new Point(190, 27);
             eliminar_vehiculo.Name = "eliminar_vehiculo";
-            eliminar_vehiculo.Size = new Size(169, 25);
+            eliminar_vehiculo.Size = new Size(115, 15);
             eliminar_vehiculo.TabIndex = 0;
             eliminar_vehiculo.Text = "Eliminar un vehiculo";
             // 
@@ -49,48 +52,71 @@
             // 
             selector_tipo.DropDownStyle = ComboBoxStyle.DropDownList;
             selector_tipo.FormattingEnabled = true;
-            selector_tipo.Location = new Point(271, 100);
-            selector_tipo.Margin = new Padding(4, 5, 4, 5);
+            selector_tipo.Location = new Point(190, 60);
             selector_tipo.Name = "selector_tipo";
-            selector_tipo.Size = new Size(171, 33);
+            selector_tipo.Size = new Size(121, 23);
             selector_tipo.TabIndex = 1;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(180, 227);
-            dataGridView2.Margin = new Padding(4, 5, 4, 5);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 62;
-            dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(343, 250);
-            dataGridView2.TabIndex = 3;
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            selector_tipo.SelectedIndexChanged += selector_tipo_SelectedIndexChanged;
             // 
             // boton_eliminar
             // 
-            boton_eliminar.Location = new Point(301, 552);
-            boton_eliminar.Margin = new Padding(4, 5, 4, 5);
+            boton_eliminar.Location = new Point(206, 283);
             boton_eliminar.Name = "boton_eliminar";
-            boton_eliminar.Size = new Size(107, 38);
+            boton_eliminar.Size = new Size(75, 23);
             boton_eliminar.TabIndex = 4;
             boton_eliminar.Text = "Eliminar";
             boton_eliminar.UseVisualStyleBackColor = true;
             boton_eliminar.Click += boton_eliminar_Click;
             // 
+            // tabla
+            // 
+            tabla.Columns.AddRange(new ColumnHeader[] { duenio, modelo, kilometraje });
+            tabla.Location = new Point(103, 158);
+            tabla.Name = "tabla";
+            tabla.Size = new Size(304, 97);
+            tabla.TabIndex = 5;
+            tabla.UseCompatibleStateImageBehavior = false;
+            tabla.View = View.Details;
+            // 
+            // duenio
+            // 
+            duenio.Text = "Dueño";
+            duenio.Width = 100;
+            // 
+            // modelo
+            // 
+            modelo.Text = "Modelo";
+            modelo.Width = 100;
+            // 
+            // kilometraje
+            // 
+            kilometraje.Text = "Kilometraje";
+            kilometraje.Width = 100;
+            // 
+            // boton_seleccionar
+            // 
+            boton_seleccionar.Location = new Point(206, 104);
+            boton_seleccionar.Name = "boton_seleccionar";
+            boton_seleccionar.Size = new Size(75, 23);
+            boton_seleccionar.TabIndex = 6;
+            boton_seleccionar.Text = "Seleccionar";
+            boton_seleccionar.UseVisualStyleBackColor = true;
+            boton_seleccionar.Click += boton_seleccionar_Click;
+            // 
             // Eliminar
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(733, 750);
+            ClientSize = new Size(513, 337);
+            Controls.Add(boton_seleccionar);
+            Controls.Add(tabla);
             Controls.Add(boton_eliminar);
-            Controls.Add(dataGridView2);
             Controls.Add(selector_tipo);
             Controls.Add(eliminar_vehiculo);
-            Margin = new Padding(4, 5, 4, 5);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Eliminar";
-            Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            Text = "Eliminar";
+            Load += Eliminar_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -99,7 +125,11 @@
 
         private Label eliminar_vehiculo;
         private ComboBox selector_tipo;
-        private DataGridView dataGridView2;
         private Button boton_eliminar;
+        private ListView tabla;
+        private ColumnHeader duenio;
+        private ColumnHeader modelo;
+        private ColumnHeader kilometraje;
+        private Button boton_seleccionar;
     }
 }

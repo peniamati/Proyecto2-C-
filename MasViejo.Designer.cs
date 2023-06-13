@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasViejo));
             label1 = new Label();
-            mas_viejo = new Label();
+            mas_viejo_duenio = new Label();
             SuspendLayout();
             // 
             // label1
@@ -42,25 +42,26 @@
             label1.TabIndex = 0;
             label1.Text = "El Tesla mas viejo es: ";
             // 
-            // mas_viejo
+            // mas_viejo_duenio
             // 
-            mas_viejo.AutoSize = true;
-            mas_viejo.Location = new Point(206, 38);
-            mas_viejo.Name = "mas_viejo";
-            mas_viejo.Size = new Size(38, 15);
-            mas_viejo.TabIndex = 1;
-            mas_viejo.Text = "label2";
+            mas_viejo_duenio.AutoSize = true;
+            mas_viejo_duenio.Location = new Point(83, 62);
+            mas_viejo_duenio.Name = "mas_viejo_duenio";
+            mas_viejo_duenio.Size = new Size(38, 15);
+            mas_viejo_duenio.TabIndex = 1;
+            mas_viejo_duenio.Text = "label2";
             // 
             // MasViejo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(318, 97);
-            Controls.Add(mas_viejo);
+            ClientSize = new Size(318, 146);
+            Controls.Add(mas_viejo_duenio);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MasViejo";
             Text = "Mas Viejo";
+            Load += MasViejo_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -68,6 +69,6 @@
         #endregion
 
         private Label label1;
-        private Label mas_viejo;
+        private Label mas_viejo_duenio;
     }
 }

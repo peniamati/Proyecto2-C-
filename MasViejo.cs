@@ -16,5 +16,30 @@ namespace Proyecto2
         {
             InitializeComponent();
         }
+
+        private void MasViejo_Load(object sender, EventArgs e)
+        {
+            string masViejoDuenio = "";
+            int anio = Program.vehiculos[0].getAnio();
+            Tesla inicial = (Tesla)Program.vehiculos.First();
+
+            foreach (Vehiculo vehiculo in Program.vehiculos)
+            {
+                if (vehiculo is Tesla)
+                {
+                    Tesla tesla = (Tesla)vehiculo;
+                    if (tesla.getAnio() < anio)
+                    {
+                        anio = tesla.getAnio();
+                        masViejoDuenio = $"Dueño: {tesla.getDuenio()} \nModelo: {tesla.getModelo()} \nAño: {tesla.getAnio()}";
+                    }
+                    else
+                    {
+                        masViejoDuenio = $"Dueño: {inicial.getDuenio()} \nModelo: {inicial.getModelo()} \nAño: {inicial.getAnio()}";
+                    }
+                }
+            }
+            mas_viejo_duenio.Text = masViejoDuenio;
+        }
     }
 }

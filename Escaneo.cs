@@ -34,6 +34,7 @@ namespace Proyecto2
             {
                 if (gettext == "Tesla")
                 {
+                    tabla.Items.Clear();
                     if (vehiculo is Tesla)
                     {
                         var tesla = (Tesla)vehiculo;
@@ -44,6 +45,7 @@ namespace Proyecto2
                 }
                 else if (gettext == "SpaceX")
                 {
+                    tabla.Items.Clear();
                     if (vehiculo is SpaceX)
                     {
                         var spaceX = (SpaceX)vehiculo;
@@ -67,6 +69,7 @@ namespace Proyecto2
 
         private void boton_a_escanear_Click(object sender, EventArgs e)
         {
+            Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
             int index = tabla.FocusedItem.Index;
             Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
             new EscaneoResultado().Show();

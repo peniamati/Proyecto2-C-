@@ -39,20 +39,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(203, 47);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(142, 28);
             label1.Name = "label1";
-            label1.Size = new Size(379, 25);
+            label1.Size = new Size(250, 15);
             label1.TabIndex = 1;
             label1.Text = "Cantidad de carga de baterias de los vehiculos";
             // 
             // lista_mostrada
             // 
             lista_mostrada.Columns.AddRange(new ColumnHeader[] { duenio, modelo, carga });
-            lista_mostrada.Location = new Point(237, 123);
-            lista_mostrada.Margin = new Padding(4, 5, 4, 5);
+            lista_mostrada.Location = new Point(129, 71);
             lista_mostrada.Name = "lista_mostrada";
-            lista_mostrada.Size = new Size(305, 255);
+            lista_mostrada.Size = new Size(303, 155);
             lista_mostrada.TabIndex = 2;
             lista_mostrada.UseCompatibleStateImageBehavior = false;
             lista_mostrada.View = View.Details;
@@ -75,13 +73,12 @@
             // 
             // Mostrar
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(829, 480);
+            ClientSize = new Size(580, 288);
             Controls.Add(lista_mostrada);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4, 5, 4, 5);
             Name = "Mostrar";
             Text = "Carga de baterias";
             ResumeLayout(false);

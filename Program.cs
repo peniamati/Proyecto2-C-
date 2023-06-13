@@ -7,6 +7,7 @@ namespace Proyecto2
     
     internal static class Program
     {
+        public static double kilometrajeEscaneo;
         public static List<Vehiculo> vehiculos = new List<Vehiculo>();
 
         /// <summary>

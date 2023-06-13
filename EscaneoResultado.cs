@@ -19,10 +19,30 @@ namespace Proyecto2
 
         private void EscaneoResultado_Load(object sender, EventArgs e)
         {
-            string palabra = "palabra";
-            escaneando.Text = $"Escaneando vehiculo: {palabra}";
-            realizados.Text = $"Se realizaron {2} services";
-            test_realizados.Text = $"Test realizados:(1), (2)";
+            escaneando.Text = "Escaneando vehiculo...";
+            int contador;
+            List<int> serviceRealizados = new List<int>();
+            int cinturones = 1000;
+            int baterias = 2000;
+            int propulsion = 1000;
+            int navegacionKm = 2500;
+            int navegacionHs = 500;
+            int traccion = 3000;
+            int motor = 3000;
+
+            if (Program.kilometrajeEscaneo >= cinturones)
+            {
+                contador =+ 1;
+                serviceRealizados.Add(1);
+                serviceRealizados.Add(2);
+            }
+            
+            realizados.Text = $"Se realizaron {contador=1} services";
+            test_realizados.Text = "Test realizados:";
+            foreach (int item in serviceRealizados)
+            {
+                test_realizados.Text = test_realizados.Text + " (" + item.ToString() +"),";
+            }
         }
     }
 }

@@ -4,19 +4,24 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proyecto2
 {
     public partial class Escaneo : Form
     {
+        
         public Escaneo()
         {
             InitializeComponent();
             selector_tipo.Items.Add("Tesla");
             selector_tipo.Items.Add("SpaceX");
+            tabla.FullRowSelect = true;      
         }
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
@@ -25,14 +30,32 @@ namespace Proyecto2
             tabla.Show();
             boton_a_escanear.Show();
             string gettext = selector_tipo.SelectedItem.ToString();
-            if (gettext == "Tesla")
+            foreach (Vehiculo vehiculo in Program.vehiculos)
             {
+                if (gettext == "Tesla")
+                {
+                    if (vehiculo is Tesla)
+                    {
+                        var tesla = (Tesla)vehiculo;
+                        string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
+                        var listViewedItem = new ListViewItem(rows);
+                        tabla.Items.Add(listViewedItem);
+                    }
+                }
+                else if (gettext == "SpaceX")
+                {
+                    if (vehiculo is SpaceX)
+                    {
+                        var spaceX = (SpaceX)vehiculo;
+                        string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), spaceX.getHorasDeVuelo().ToString() };
+                        var listViewedItem = new ListViewItem(rows);
+                        tabla.Items.Add(listViewedItem);
+                    }
+                }
 
             }
-            else if (gettext == "SpaceX")
-            {
 
-            }
+
         }
 
         private void Escaneo_Load(object sender, EventArgs e)
@@ -44,8 +67,31 @@ namespace Proyecto2
 
         private void boton_a_escanear_Click(object sender, EventArgs e)
         {
+            int index = tabla.FocusedItem.Index;
+            Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
             new EscaneoResultado().Show();
         }
+
+
+        private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string gettext = selector_tipo.SelectedItem.ToString();
+            if (gettext == "Tesla")
+            {
+                tabla.Items.Clear();
+                duenio.Text = "Dueño";
+                kilometraje.Text = "Kilometraje";
+            }
+            else if (gettext == "SpaceX")
+            {
+                tabla.Items.Clear();
+                duenio.Text = "Empresa";
+                kilometraje.Text = "Horas de Vuelo";
+            }
+
+        }
+
+
     }
 
 

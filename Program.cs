@@ -157,7 +157,7 @@ namespace Proyecto2
         }
         public double calcularBateria()
         {
-            return Math.Truncate((Math.Ceiling(Convert.ToDouble(kilometraje / autonomia)) - Math.Round(Convert.ToDouble(kilometraje / autonomia),2)) * 100);
+            return Math.Round(Math.Truncate(Convert.ToDouble(kilometraje / autonomia)) + (Convert.ToDouble(kilometraje / autonomia) - Math.Truncate(Convert.ToDouble(kilometraje / autonomia))),2);
         }
 
 
@@ -212,7 +212,7 @@ namespace Proyecto2
         }
         public double calcularBateria()
         {
-            return Math.Truncate((Math.Ceiling(Convert.ToDouble(horasDeVuelo / autonomia)) - Math.Round(Convert.ToDouble(horasDeVuelo / autonomia), 2)) * 100);
+            return Math.Round(Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia)) + (Convert.ToDouble(horasDeVuelo / autonomia) - Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia))), 2);
         }
     }
 }

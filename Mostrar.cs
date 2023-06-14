@@ -20,14 +20,14 @@ namespace Proyecto2
                 if (vehiculo is Tesla)
                 {
                     var tesla = (Tesla)vehiculo;
-                    string[] rows = { tesla.getDuenio(), tesla.getModelo(), $"{(tesla.calcularBateria()).ToString()}%" };
+                    string[] rows = { tesla.getDuenio(), tesla.getModelo(), $"{(tesla.calcularBateria()).ToString()} baterias" };
                     var listViewedItem = new ListViewItem(rows);
                     lista_mostrada.Items.Add(listViewedItem);
                 }
                 else if (vehiculo is SpaceX)
                 {
                     var spaceX = (SpaceX)vehiculo;
-                    string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), $"{(spaceX.calcularBateria()).ToString()}%" };
+                    string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), $"{(spaceX.calcularBateria()).ToString()} cargas de combustible" };
                     var listViewedItem = new ListViewItem(rows);
                     lista_mostrada.Items.Add(listViewedItem);
                 }

@@ -25,7 +25,30 @@ namespace Proyecto2
                     new Eliminar().Show();
                     break;
                 case "3. Mostrar el Tesla mas viejo.":
-                    new MasViejo().Show();
+                    try
+                    {
+                        if (Program.vehiculos.Count > 0)
+                        {
+                            int hayTesla = Program.vehiculos.Count(vehiculo => vehiculo is Tesla);
+                            if (hayTesla > 0)
+                            {
+                                new MasViejo().Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No hay teslas en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Lista vacia");
+                        }   
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    } 
                     break;
                 case "4. Escaneo de un vehículo.":
                     new Escaneo().Show();

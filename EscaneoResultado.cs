@@ -30,8 +30,8 @@ namespace Proyecto2
             int traccion = 3000;
             int motor = 3000;
 
-            if (Program.modeloEscaneo == "Tesla") 
-            { 
+            if (Program.modeloEscaneo == "Tesla")
+            {
                 if (Program.kilometrajeEscaneo >= cinturones)
                 {
                     contador = +1;
@@ -55,9 +55,9 @@ namespace Proyecto2
                         serviceRealizados.Add(6);
                     }
                 }
-                
+
             }
-            else if(Program.modeloEscaneo == "SpaceX")
+            else if (Program.modeloEscaneo == "SpaceX")
             {
                 if (Program.kilometrajeEscaneo >= navegacionHs)
                 {
@@ -70,7 +70,7 @@ namespace Proyecto2
                         serviceRealizados.Add(3);
                     }
                 }
-               
+
             }
 
 
@@ -78,7 +78,7 @@ namespace Proyecto2
             test_realizados.Text = "Test realizados:";
             foreach (int item in serviceRealizados)
             {
-                test_realizados.Text = test_realizados.Text + " (" + item.ToString() +"),";
+                test_realizados.Text = test_realizados.Text + " (" + item.ToString() + "),";
             }
         }
     }

@@ -42,9 +42,10 @@
             // eliminar_vehiculo
             // 
             eliminar_vehiculo.AutoSize = true;
-            eliminar_vehiculo.Location = new Point(190, 27);
+            eliminar_vehiculo.Location = new Point(271, 45);
+            eliminar_vehiculo.Margin = new Padding(4, 0, 4, 0);
             eliminar_vehiculo.Name = "eliminar_vehiculo";
-            eliminar_vehiculo.Size = new Size(115, 15);
+            eliminar_vehiculo.Size = new Size(169, 25);
             eliminar_vehiculo.TabIndex = 0;
             eliminar_vehiculo.Text = "Eliminar un vehiculo";
             // 
@@ -52,17 +53,19 @@
             // 
             selector_tipo.DropDownStyle = ComboBoxStyle.DropDownList;
             selector_tipo.FormattingEnabled = true;
-            selector_tipo.Location = new Point(190, 60);
+            selector_tipo.Location = new Point(271, 100);
+            selector_tipo.Margin = new Padding(4, 5, 4, 5);
             selector_tipo.Name = "selector_tipo";
-            selector_tipo.Size = new Size(121, 23);
+            selector_tipo.Size = new Size(171, 33);
             selector_tipo.TabIndex = 1;
             selector_tipo.SelectedIndexChanged += selector_tipo_SelectedIndexChanged;
             // 
             // boton_eliminar
             // 
-            boton_eliminar.Location = new Point(206, 283);
+            boton_eliminar.Location = new Point(294, 472);
+            boton_eliminar.Margin = new Padding(4, 5, 4, 5);
             boton_eliminar.Name = "boton_eliminar";
-            boton_eliminar.Size = new Size(75, 23);
+            boton_eliminar.Size = new Size(107, 38);
             boton_eliminar.TabIndex = 4;
             boton_eliminar.Text = "Eliminar";
             boton_eliminar.UseVisualStyleBackColor = true;
@@ -71,9 +74,10 @@
             // tabla
             // 
             tabla.Columns.AddRange(new ColumnHeader[] { duenio, modelo, kilometraje });
-            tabla.Location = new Point(103, 158);
+            tabla.Location = new Point(147, 263);
+            tabla.Margin = new Padding(4, 5, 4, 5);
             tabla.Name = "tabla";
-            tabla.Size = new Size(304, 97);
+            tabla.Size = new Size(433, 159);
             tabla.TabIndex = 5;
             tabla.UseCompatibleStateImageBehavior = false;
             tabla.View = View.Details;
@@ -95,9 +99,10 @@
             // 
             // boton_seleccionar
             // 
-            boton_seleccionar.Location = new Point(206, 104);
+            boton_seleccionar.Location = new Point(294, 173);
+            boton_seleccionar.Margin = new Padding(4, 5, 4, 5);
             boton_seleccionar.Name = "boton_seleccionar";
-            boton_seleccionar.Size = new Size(75, 23);
+            boton_seleccionar.Size = new Size(116, 38);
             boton_seleccionar.TabIndex = 6;
             boton_seleccionar.Text = "Seleccionar";
             boton_seleccionar.UseVisualStyleBackColor = true;
@@ -105,15 +110,16 @@
             // 
             // Eliminar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(513, 337);
+            ClientSize = new Size(733, 562);
             Controls.Add(boton_seleccionar);
             Controls.Add(tabla);
             Controls.Add(boton_eliminar);
             Controls.Add(selector_tipo);
             Controls.Add(eliminar_vehiculo);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Eliminar";
             Text = "Eliminar";
             Load += Eliminar_Load;

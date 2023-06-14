@@ -15,13 +15,13 @@ namespace Proyecto2
 {
     public partial class Escaneo : Form
     {
-        
+
         public Escaneo()
         {
             InitializeComponent();
             selector_tipo.Items.Add("Tesla");
             selector_tipo.Items.Add("SpaceX");
-            tabla.FullRowSelect = true;      
+            tabla.FullRowSelect = true;
         }
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
@@ -29,23 +29,39 @@ namespace Proyecto2
             a_escanear.Show();
             tabla.Show();
             boton_a_escanear.Show();
+
             string gettext = selector_tipo.SelectedItem.ToString();
-            foreach (Vehiculo vehiculo in Program.vehiculos)
+            bool limpia = false;
+            if (gettext == "Tesla")
             {
-                if (gettext == "Tesla")
+
+                limpia = false;
+                if (!limpia)
                 {
                     tabla.Items.Clear();
+                    limpia = true;
+                }
+                foreach (Vehiculo vehiculo in Program.vehiculos)
+                {
                     if (vehiculo is Tesla)
                     {
-                        var tesla = (Tesla)vehiculo;
+                        Tesla tesla = (Tesla)vehiculo;
                         string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
                         var listViewedItem = new ListViewItem(rows);
                         tabla.Items.Add(listViewedItem);
                     }
                 }
-                else if (gettext == "SpaceX")
+            }
+            else if (gettext == "SpaceX")
+            {
+                limpia = false;
+                if (!limpia)
                 {
                     tabla.Items.Clear();
+                    limpia = true;
+                }
+                foreach (Vehiculo vehiculo in Program.vehiculos)
+                {
                     if (vehiculo is SpaceX)
                     {
                         var spaceX = (SpaceX)vehiculo;
@@ -53,15 +69,16 @@ namespace Proyecto2
                         var listViewedItem = new ListViewItem(rows);
                         tabla.Items.Add(listViewedItem);
                     }
+
+
                 }
 
             }
-
-
-        }
+       }   
 
         private void Escaneo_Load(object sender, EventArgs e)
         {
+            boton_seleccionar.Hide();
             a_escanear.Hide();
             tabla.Hide();
             boton_a_escanear.Hide();
@@ -69,15 +86,44 @@ namespace Proyecto2
 
         private void boton_a_escanear_Click(object sender, EventArgs e)
         {
-            Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
-            int index = tabla.FocusedItem.Index;
-            Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
-            new EscaneoResultado().Show();
+            try
+            {
+                if(Program.vehiculos.Count > 0)
+                {
+                    int index;
+                    if (tabla.FocusedItem == null || tabla.FocusedItem.Index == -1)
+                    {
+                        index = -1;
+                        tabla.Hide();
+                        boton_a_escanear.Hide();
+                    }
+                    else {
+                        index = tabla.FocusedItem.Index;
+                        Program.modeloEscaneo = selector_tipo.SelectedItem.ToString(); 
+                        Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
+                        new EscaneoResultado().Show();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Lista vacia");
+                }
+            
+            
+            }
+            catch 
+            {
+                MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
 
         private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            boton_seleccionar.Show();
+            tabla.Hide();
+            boton_a_escanear.Hide();
+            a_escanear.Hide();
             string gettext = selector_tipo.SelectedItem.ToString();
             if (gettext == "Tesla")
             {

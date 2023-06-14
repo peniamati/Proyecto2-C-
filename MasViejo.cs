@@ -19,24 +19,28 @@ namespace Proyecto2
 
         private void MasViejo_Load(object sender, EventArgs e)
         {
+            int hayTesla = Program.vehiculos.Count(vehiculo => vehiculo is Tesla);
             string masViejoDuenio = "";
-            int anio = Program.vehiculos[0].getAnio();
-            Tesla inicial = (Tesla)Program.vehiculos.First();
-
+            bool iniciado = false;
+            int anio = 0;
             foreach (Vehiculo vehiculo in Program.vehiculos)
             {
                 if (vehiculo is Tesla)
                 {
                     Tesla tesla = (Tesla)vehiculo;
-                    if (tesla.getAnio() < anio)
+                    if (!iniciado) { 
+                        anio = tesla.getAnio();
+                        Tesla inicial = tesla;
+                        iniciado = true;
+                        masViejoDuenio = $"Dueño: {inicial.getDuenio()} \nModelo: {inicial.getModelo()} \nAño: {inicial.getAnio()}";
+                    }
+                    else if (tesla.getAnio() < anio)
                     {
                         anio = tesla.getAnio();
                         masViejoDuenio = $"Dueño: {tesla.getDuenio()} \nModelo: {tesla.getModelo()} \nAño: {tesla.getAnio()}";
                     }
-                    else
-                    {
-                        masViejoDuenio = $"Dueño: {inicial.getDuenio()} \nModelo: {inicial.getModelo()} \nAño: {inicial.getAnio()}";
-                    }
+            
+
                 }
             }
             mas_viejo_duenio.Text = masViejoDuenio;

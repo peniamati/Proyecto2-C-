@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,46 +26,57 @@ namespace Proyecto2
 
         private void boton_eliminar_Click(object sender, EventArgs e)
         {
-            int index = tabla.FocusedItem.Index;
-            string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
-            string duenioEliminar = tabla.Items[index].SubItems[0].Text;
-            string modeloEliminar = tabla.Items[index].SubItems[1].Text;
-            List<string> itemToRemove = new List<string> { kilometrajeEliminar, duenioEliminar, modeloEliminar };
-            foreach (Vehiculo vehiculo in Program.vehiculos)
+            try
             {
-                if (vehiculo is Tesla)
+                if (Program.vehiculos.Count > 0)
                 {
-                    Tesla tesla = (Tesla)vehiculo;
-                    if (itemToRemove.Contains(tesla.getKilometraje().ToString()) && itemToRemove.Contains(tesla.getDuenio()) && itemToRemove.Contains(tesla.getModelo()))
+                    int index = tabla.FocusedItem.Index;
+                    string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
+                    string duenioEliminar = tabla.Items[index].SubItems[0].Text;
+                    string modeloEliminar = tabla.Items[index].SubItems[1].Text;
+                    List<string> itemToRemove = new List<string> { kilometrajeEliminar, duenioEliminar, modeloEliminar };
+                    foreach (Vehiculo vehiculo in Program.vehiculos)
                     {
-                        Program.aRemoverTesla = tesla;
-                    }
-                }
-                else if (vehiculo is SpaceX)
-                {
-                    SpaceX spaceX = (SpaceX)vehiculo;
-                    if (itemToRemove.Contains(spaceX.getHorasDeVuelo().ToString()) && itemToRemove.Contains(spaceX.getEmpresa()) && itemToRemove.Contains(spaceX.getModelo()))
-                    {
-                        Program.aRemoverSpaceX = spaceX;
-                    }
-                }
+                        if (vehiculo is Tesla)
+                        {
+                            Tesla tesla = (Tesla)vehiculo;
+                            if (itemToRemove.Contains(tesla.getKilometraje().ToString()) && itemToRemove.Contains(tesla.getDuenio()) && itemToRemove.Contains(tesla.getModelo()))
+                            {
+                                Program.aRemoverTesla = tesla;
+                            }
+                        }
+                        else if (vehiculo is SpaceX)
+                        {
+                            SpaceX spaceX = (SpaceX)vehiculo;
+                            if (itemToRemove.Contains(spaceX.getHorasDeVuelo().ToString()) && itemToRemove.Contains(spaceX.getEmpresa()) && itemToRemove.Contains(spaceX.getModelo()))
+                            {
+                                Program.aRemoverSpaceX = spaceX;
+                            }
+                        }
 
-            }
-            DialogResult Result;
-            Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (Result == DialogResult.Yes)
-            { 
-                if (Program.aRemoverTesla is not null) { 
-                    Program.vehiculos.Remove(Program.aRemoverTesla);
-                }
-                else if(Program.aRemoverSpaceX is not null)
-                {
-                    Program.vehiculos.Remove(Program.aRemoverSpaceX);
+                    }
+                    DialogResult Result;
+                    Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (Result == DialogResult.Yes)
+                    {
+                        if (Program.aRemoverTesla is not null)
+                        {
+                            Program.vehiculos.Remove(Program.aRemoverTesla);
+                        }
+                        else if (Program.aRemoverSpaceX is not null)
+                        {
+                            Program.vehiculos.Remove(Program.aRemoverSpaceX);
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }  
+                    throw new Exception("Lista vacia");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -100,7 +112,7 @@ namespace Proyecto2
                 }
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
-                    if(vehiculo is Tesla)
+                    if (vehiculo is Tesla)
                     {
                         Tesla tesla = (Tesla)vehiculo;
                         string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
@@ -109,10 +121,10 @@ namespace Proyecto2
                     }
                 }
             }
-            
-                
+
+
             else if (gettext == "SpaceX")
-             {
+            {
                 limpia = false;
                 if (!limpia)
                 {
@@ -121,7 +133,7 @@ namespace Proyecto2
                 }
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
-                    if( vehiculo is SpaceX)
+                    if (vehiculo is SpaceX)
                     {
                         SpaceX spaceX = (SpaceX)vehiculo;
                         string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), spaceX.getHorasDeVuelo().ToString() };

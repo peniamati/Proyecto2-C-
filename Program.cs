@@ -9,7 +9,8 @@ namespace Proyecto2
     {
         public static double kilometrajeEscaneo;
         public static string modeloEscaneo;
-        public static string modeloEliminar;
+        public static Tesla aRemoverTesla;
+        public static SpaceX aRemoverSpaceX;
         public static List<Vehiculo> vehiculos = new List<Vehiculo>();
 
         /// <summary>

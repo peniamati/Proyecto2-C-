@@ -24,6 +24,7 @@ namespace Proyecto2
             selector_tipo.Items.Add("SpaceX");
             tabla.FullRowSelect = true;
             tabla.AllowDrop = false;
+            
         }
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
@@ -51,6 +52,7 @@ namespace Proyecto2
                         string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
                         var listViewedItem = new ListViewItem(rows);
                         tabla.Items.Add(listViewedItem);
+                        
                     }
                 }
             }
@@ -76,6 +78,10 @@ namespace Proyecto2
                 }
 
             }
+            tabla.Columns[0].Width = -2;
+            tabla.Columns[1].Width = -2;
+            tabla.Columns[2].Width = -2;
+            tabla.Width = tabla.Columns[0].Width + tabla.Columns[1].Width + tabla.Columns[2].Width;
         }
 
         private void Escaneo_Load(object sender, EventArgs e)
@@ -93,61 +99,13 @@ namespace Proyecto2
             {
                 if (Program.vehiculos.Count > 0)
                 {
-                    if(tabla.FocusedItem != null && tabla.FocusedItem.Index != -1)
+                    if (tabla.FocusedItem != null && tabla.FocusedItem.Index != -1)
                     {
                         index = tabla.FocusedItem.Index;
                         Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
-                        Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
+                        Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);               
                         new EscaneoResultado().Show();
-                        tabla.Hide();
-                        boton_a_escanear.Hide();
-                        a_escanear.Hide();
-                        string gettext = selector_tipo.SelectedItem.ToString();
-                        bool limpia = false;
-                        if (gettext == "Tesla")
-                        {
-
-                            limpia = false;
-                            if (!limpia)
-                            {
-                                tabla.Items.Clear();
-                                limpia = true;
-                            }
-                            foreach (Vehiculo vehiculo in Program.vehiculos)
-                            {
-                                if (vehiculo is Tesla)
-                                {
-                                    Tesla tesla = (Tesla)vehiculo;
-                                    string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
-                                    var listViewedItem = new ListViewItem(rows);
-                                    tabla.Items.Add(listViewedItem);
-                                }
-                            }
-                            
-                        }
-                        else if (gettext == "SpaceX")
-                        {
-                            limpia = false;
-                            if (!limpia)
-                            {
-                                tabla.Items.Clear();
-                                limpia = true;
-                            }
-                            foreach (Vehiculo vehiculo in Program.vehiculos)
-                            {
-                                if (vehiculo is SpaceX)
-                                {
-                                    var spaceX = (SpaceX)vehiculo;
-                                    string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), spaceX.getHorasDeVuelo().ToString() };
-                                    var listViewedItem = new ListViewItem(rows);
-                                    tabla.Items.Add(listViewedItem);
-                                }
-
-
-                            }
-
-                        }
-                        
+                        this.Close();
                     }
                 }
                 else
@@ -161,8 +119,8 @@ namespace Proyecto2
             {
                 MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
-            
+
+
         }
 
 

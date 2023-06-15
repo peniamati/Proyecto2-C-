@@ -169,7 +169,17 @@ namespace Proyecto2
                     }
                     Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
                     Program.vehiculos.Add(tesla);
-                    MessageBox.Show("Tesla dado de alta con exito", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult Resultado;
+                    Resultado = MessageBox.Show("Tesla dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (Resultado == DialogResult.Yes)
+                    {
+                        this.Close();
+                        new Alta().Show();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
 
                 }
                 catch
@@ -193,7 +203,17 @@ namespace Proyecto2
                     }
                     SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
                     Program.vehiculos.Add(spaceX);
-                    MessageBox.Show("SpaceX dado de alta con exito!", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult Resultado;
+                    Resultado = MessageBox.Show("SpaceX dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (Resultado == DialogResult.Yes)
+                    {
+                        this.Close();
+                        new Alta().Show();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
                 catch
                 {
@@ -201,10 +221,7 @@ namespace Proyecto2
                     MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
+            
             textBox1.Select();
         }
 

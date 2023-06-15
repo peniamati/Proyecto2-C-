@@ -169,6 +169,8 @@ namespace Proyecto2
                     }
                     Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
                     Program.vehiculos.Add(tesla);
+                    MessageBox.Show("Tesla dado de alta con exito", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
                 catch
                 {
@@ -191,6 +193,7 @@ namespace Proyecto2
                     }
                     SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
                     Program.vehiculos.Add(spaceX);
+                    MessageBox.Show("SpaceX dado de alta con exito!", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
                 {

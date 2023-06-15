@@ -28,8 +28,8 @@ namespace Proyecto2
         {
             try
             {
-                if (Program.vehiculos.Count > 0)
-                {
+                if (Program.vehiculos.Count > 0) 
+                { 
                     int index = tabla.FocusedItem.Index;
                     string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
                     string duenioEliminar = tabla.Items[index].SubItems[0].Text;
@@ -62,10 +62,18 @@ namespace Proyecto2
                         if (Program.aRemoverTesla is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverTesla);
+                            MessageBox.Show("Tesla eliminado con exito", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            tabla.Hide();
+                            boton_eliminar.Hide();
+
                         }
                         else if (Program.aRemoverSpaceX is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverSpaceX);
+                            MessageBox.Show("SpaceX eliminado con exito", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            tabla.Hide();
+                            boton_eliminar.Hide();
+                            
                         }
                     }
                 }

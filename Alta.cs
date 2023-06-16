@@ -169,13 +169,13 @@ namespace Proyecto2
                     }
                     if (modelo == "Modelo S" && anio < 2013) {
 
-                        throw new FormatException("Error");
+                        throw new FormatException("El año debe ser mayor a 2013");
                     }
                     if(modelo == "Modelo X" && anio < 2015)
-                    { throw new FormatException("Error"); }
+                    { throw new FormatException("El año debe ser mayor a 2015"); }
 
                     if (modelo == "Cybertruck" && anio < 2019)
-                    { throw new FormatException("Error"); }
+                    { throw new FormatException("El año debe ser mayor a 2019"); }
 
                     Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
                     Program.vehiculos.Add(tesla);
@@ -192,11 +192,14 @@ namespace Proyecto2
                     }
 
                 }
+                catch (FormatException ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+
                 catch
                 {
                     // Display an error message.
                     MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+               
                 
             }
             else if (gettext == "SpaceX")

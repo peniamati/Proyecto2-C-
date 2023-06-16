@@ -167,6 +167,16 @@ namespace Proyecto2
                     {
                         throw new Exception("Error");
                     }
+                    if (modelo == "Modelo S" && anio < 2013) {
+
+                        throw new FormatException("El año debe ser mayor a 2013");
+                    }
+                    if(modelo == "Modelo X" && anio < 2015)
+                    { throw new FormatException("El año debe ser mayor a 2015"); }
+
+                    if (modelo == "Cybertruck" && anio < 2019)
+                    { throw new FormatException("El año debe ser mayor a 2019"); }
+
                     Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
                     Program.vehiculos.Add(tesla);
                     DialogResult Resultado;
@@ -182,11 +192,15 @@ namespace Proyecto2
                     }
 
                 }
+                catch (FormatException ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+
                 catch
                 {
                     // Display an error message.
                     MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+               
+                
             }
             else if (gettext == "SpaceX")
             {
@@ -201,6 +215,11 @@ namespace Proyecto2
                     {
                         throw new Exception("Error");
                     }
+
+                    if (anio < 2002){
+                        throw new FormatException("Error");
+                    }
+                    
                     SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
                     Program.vehiculos.Add(spaceX);
                     DialogResult Resultado;
@@ -215,6 +234,11 @@ namespace Proyecto2
                         this.Close();
                     }
                 }
+
+                catch (FormatException){
+                    MessageBox.Show("Debe ingresar un valor mayor a 2022.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 catch
                 {
                     // Display an error message.

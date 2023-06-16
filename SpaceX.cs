@@ -48,8 +48,13 @@ public class SpaceX : Vehiculo
     {
         return this.modelo;
     }
-    public double calcularBateria()
+    public double calcularEnteroBateria()
     {
-        return Math.Round(Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia)) + (Convert.ToDouble(horasDeVuelo / autonomia) - Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia))), 2);
+        return Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia));
+    }
+    public double calcularPorcentajeBateria()
+    {
+        double numero = Math.Round(Convert.ToDouble(horasDeVuelo / autonomia) - Math.Truncate(Convert.ToDouble(horasDeVuelo / autonomia)), 2);
+        return Math.Round(numero * 100, 2);
     }
 }

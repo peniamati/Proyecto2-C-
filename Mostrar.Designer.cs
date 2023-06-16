@@ -50,7 +50,7 @@
             lista_mostrada.Columns.AddRange(new ColumnHeader[] { duenio, modelo, carga });
             lista_mostrada.Location = new Point(129, 71);
             lista_mostrada.Name = "lista_mostrada";
-            lista_mostrada.Size = new Size(303, 155);
+            lista_mostrada.Size = new Size(305, 155);
             lista_mostrada.TabIndex = 2;
             lista_mostrada.UseCompatibleStateImageBehavior = false;
             lista_mostrada.View = View.Details;

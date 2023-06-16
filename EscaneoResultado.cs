@@ -81,5 +81,15 @@ namespace Proyecto2
                 test_realizados.Text = test_realizados.Text + " (" + item.ToString() + "),";
             }
         }
+
+        private void EscaneoResultado_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult Resultado;
+            Resultado = MessageBox.Show("Desea escanear otro vehiculo?", "escanear", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (Resultado == DialogResult.Yes)
+            {
+                new Escaneo().Show();
+            }
+        }
     }
 }

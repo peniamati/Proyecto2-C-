@@ -67,9 +67,15 @@ public class Tesla : Vehiculo
     {
         return this.service;
     }
-    public double calcularBateria()
+    public double calcularEnteroBateria()
     {
-        return Math.Round(Math.Truncate(Convert.ToDouble(kilometraje / autonomia)) + (Convert.ToDouble(kilometraje / autonomia) - Math.Truncate(Convert.ToDouble(kilometraje / autonomia))), 2);
+        return Math.Truncate(Convert.ToDouble(kilometraje / autonomia));
+    }
+    public double calcularPorcentajeBateria()
+    {
+        double numero = Math.Round(Convert.ToDouble(kilometraje / autonomia) - Math.Truncate(Convert.ToDouble(kilometraje / autonomia)), 2, MidpointRounding.ToEven);
+        
+        return Math.Round(numero * 100,2);
     }
 
 

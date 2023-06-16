@@ -28,8 +28,8 @@ namespace Proyecto2
         {
             try
             {
-                if (Program.vehiculos.Count > 0)
-                {
+                if (Program.vehiculos.Count > 0) 
+                { 
                     int index = tabla.FocusedItem.Index;
                     string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
                     string duenioEliminar = tabla.Items[index].SubItems[0].Text;
@@ -62,10 +62,34 @@ namespace Proyecto2
                         if (Program.aRemoverTesla is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverTesla);
+                            DialogResult Resultado;
+                            Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            if(Resultado == DialogResult.Yes)
+                            {
+                                this.Close();
+                                new Eliminar().Show();
+                            }
+                            else
+                            {
+                                this.Close();
+                            }
+
                         }
                         else if (Program.aRemoverSpaceX is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverSpaceX);
+                            DialogResult Resultado;
+                            Resultado = MessageBox.Show("SpaceX eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            if (Resultado == DialogResult.Yes)
+                            {
+                                this.Close();
+                                new Eliminar().Show();
+                            }
+                            else
+                            {
+                                this.Close();
+                            }
+
                         }
                     }
                 }
@@ -143,6 +167,10 @@ namespace Proyecto2
 
                 }
             }
+            tabla.Columns[0].Width = -2;
+            tabla.Columns[1].Width = -2;
+            tabla.Columns[2].Width = -2;
+            tabla.Width = tabla.Columns[0].Width + tabla.Columns[1].Width + tabla.Columns[2].Width;
 
         }
     }

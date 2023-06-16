@@ -167,14 +167,30 @@ namespace Proyecto2
                     {
                         throw new Exception("Error");
                     }
+                    if (modelo == "Modelo S" && anio < 2013) {
+
+                        throw new FormatException("Error");
+                    }
+                    if(modelo == "Modelo X" && anio < 2015)
+                    { throw new FormatException("Error"); }
+
+                    if (modelo == "Cybertruck" && anio < 2019)
+                    { throw new FormatException("Error"); }
+
                     Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
                     Program.vehiculos.Add(tesla);
+
+                }
+                catch (FormatException anio) // corregir tipo de excepcion(personalizada)
+                {
+                    MessageBox.Show($"El año debe ser mayor a {anio}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
                 {
                     // Display an error message.
                     MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
             }
             else if (gettext == "SpaceX")
             {
@@ -189,9 +205,19 @@ namespace Proyecto2
                     {
                         throw new Exception("Error");
                     }
+
+                    if (anio < 2002){
+                        throw new FormatException("Error");
+                    }
+                    
                     SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
                     Program.vehiculos.Add(spaceX);
                 }
+
+                catch (FormatException){
+                    MessageBox.Show("Debe ingresar un valor mayor a 2022.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 catch
                 {
                     // Display an error message.

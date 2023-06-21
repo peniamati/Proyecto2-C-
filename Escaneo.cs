@@ -20,6 +20,7 @@ namespace Proyecto2
         public Escaneo()
         {
             InitializeComponent();
+            this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
             selector_tipo.Items.Add("SpaceX");
             tabla.FullRowSelect = true;

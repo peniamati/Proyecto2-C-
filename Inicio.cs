@@ -5,6 +5,7 @@ namespace Proyecto2
         public Inicio()
         {
             InitializeComponent();
+            this.CenterToScreen();
             comboBox1.Items.Add("1. Dar de alta un Tesla y SpaceX.");
             comboBox1.Items.Add("2. Eliminar un Tesla y SpaceX.");
             comboBox1.Items.Add("3. Mostrar el Tesla mas viejo.");

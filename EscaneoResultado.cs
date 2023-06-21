@@ -15,6 +15,7 @@ namespace Proyecto2
         public EscaneoResultado()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void EscaneoResultado_Load(object sender, EventArgs e)
@@ -27,7 +28,6 @@ namespace Proyecto2
             int propulsion = 1000;
             int navegacionKm = 2500;
             int navegacionHs = 500;
-            int traccion = 3000;
             int motor = 3000;
 
             if (Program.modeloEscaneo == "Tesla")

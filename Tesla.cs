@@ -7,7 +7,6 @@ public class Tesla : Vehiculo
     int service;
     string modelo; 
     string duenio;
-    double carga;
     // anio debe ser mayor a 2003
     const int autonomiaX = 560;
     const int asientosX = 7;

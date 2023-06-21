@@ -15,6 +15,7 @@ namespace Proyecto2
         public MasViejo()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void MasViejo_Load(object sender, EventArgs e)

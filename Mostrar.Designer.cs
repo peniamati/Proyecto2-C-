@@ -48,9 +48,9 @@
             // lista_mostrada
             // 
             lista_mostrada.Columns.AddRange(new ColumnHeader[] { duenio, modelo, carga });
-            lista_mostrada.Location = new Point(129, 71);
+            lista_mostrada.Location = new Point(90, 76);
             lista_mostrada.Name = "lista_mostrada";
-            lista_mostrada.Size = new Size(305, 155);
+            lista_mostrada.Size = new Size(372, 155);
             lista_mostrada.TabIndex = 2;
             lista_mostrada.UseCompatibleStateImageBehavior = false;
             lista_mostrada.View = View.Details;
@@ -75,7 +75,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(580, 288);
+            ClientSize = new Size(544, 288);
             Controls.Add(lista_mostrada);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");

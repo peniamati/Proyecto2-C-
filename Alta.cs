@@ -16,29 +16,11 @@ namespace Proyecto2
         public Alta()
         {
             InitializeComponent();
+            this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
             selector_tipo.Items.Add("SpaceX");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -158,26 +140,45 @@ namespace Proyecto2
             {
                 try
                 {
-                    int anio = Int32.Parse(textBox1.Text);
-                    double kilometraje = Convert.ToDouble(textBox2.Text);
+                    string anio = textBox1.Text;
+                    string kilometraje = textBox2.Text;
                     string color = textBox3.Text;
                     string duenio = textBox4.Text;
                     string modelo = selector_modelo.SelectedItem.ToString();
+                    int anioInt;
+                    double kilometrajeDouble;
+                    try
+                    {
+                        anioInt = Int32.Parse(textBox1.Text);
+                    }
+                    catch
+                    {
+                        throw new Exception("Debe ingresar un valor entero de año");
+                    }
+                    try
+                    {
+                        kilometrajeDouble = Convert.ToDouble(textBox2.Text);
+                    }
+                    catch
+                    {
+                        throw new Exception("Debe ingresar un valor númerico para el kilometraje");
+                    }
+
                     if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(duenio))
                     {
-                        throw new Exception("Error");
+                        throw new Exception("Los campos no pueden quedar vacios");
                     }
-                    if (modelo == "Modelo S" && anio < 2013) {
-
-                        throw new FormatException("El año debe ser mayor a 2013");
+                    if (modelo == "Modelo S" && anioInt < 2012){
+                        throw new Exception("El año debe ser mayor o igual a 2012");
                     }
-                    if(modelo == "Modelo X" && anio < 2015)
-                    { throw new FormatException("El año debe ser mayor a 2015"); }
+                    if (modelo == "Modelo X" && anioInt < 2015)
+                    { throw new Exception("El año debe ser mayor o igual a 2015"); }
 
-                    if (modelo == "Cybertruck" && anio < 2019)
-                    { throw new FormatException("El año debe ser mayor a 2019"); }
+                    if (modelo == "Cybertruck" && anioInt < 2019)
+                    { throw new Exception("El año debe ser mayor o igual a 2019"); }
+                    
 
-                    Tesla tesla = new Tesla(anio, color, kilometraje, duenio, modelo);
+                    Tesla tesla = new Tesla(anioInt, color, kilometrajeDouble, duenio, modelo);
                     Program.vehiculos.Add(tesla);
                     DialogResult Resultado;
                     Resultado = MessageBox.Show("Tesla dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -192,35 +193,53 @@ namespace Proyecto2
                     }
 
                 }
-                catch (FormatException ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
-                catch
+                catch (Exception ex)
                 {
                     // Display an error message.
-                    MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-               
-                
+
+
             }
             else if (gettext == "SpaceX")
             {
                 try
                 {
-                    int anio = Int32.Parse(textBox1.Text);
-                    double horasDeVuelo = Convert.ToDouble(textBox2.Text);
+                    string anio = textBox1.Text;
+                    string horasDeVuelo = textBox2.Text;
                     string color = textBox3.Text;
                     string empresa = textBox4.Text;
                     string modelo = selector_modelo.SelectedItem.ToString();
-                    if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(empresa))
+                    int anioInt;
+                    double horasDeVueloDouble;
+                    try
                     {
-                        throw new Exception("Error");
+                        anioInt = Int32.Parse(textBox1.Text);
+                    }
+                    catch
+                    {
+                        throw new Exception("Debe ingresar un valor entero de año");
+                    }
+                    try
+                    {
+                        horasDeVueloDouble = Convert.ToDouble(textBox2.Text);
+                    }
+                    catch
+                    {
+                        throw new Exception("Debe ingresar un valor númerico para las horas de vuelo");
                     }
 
-                    if (anio < 2002){
-                        throw new FormatException("Error");
+                    if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(empresa))
+                    {
+                        throw new Exception("Los campos no pueden quedar vacios");
                     }
-                    
-                    SpaceX spaceX = new SpaceX(anio, color, horasDeVuelo, empresa, modelo);
+                    if (anioInt < 2002)
+                    {
+                        throw new Exception("El año debe ser mayor o igual a 2002");
+                    }
+
+                    SpaceX spaceX = new SpaceX(anioInt, color, horasDeVueloDouble, empresa, modelo);
                     Program.vehiculos.Add(spaceX);
                     DialogResult Resultado;
                     Resultado = MessageBox.Show("SpaceX dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -235,17 +254,13 @@ namespace Proyecto2
                     }
                 }
 
-                catch (FormatException){
-                    MessageBox.Show("Debe ingresar un valor mayor a 2022.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                catch
+                catch (Exception ex)
                 {
                     // Display an error message.
-                    MessageBox.Show("Debe ingresar un valor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            
+
             textBox1.Select();
         }
 

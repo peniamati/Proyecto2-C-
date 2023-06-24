@@ -31,9 +31,9 @@ namespace Proyecto2
             int motor = 3000;
 
             if (Program.modeloEscaneo == "Tesla")
-            {
+            {// escaneo segun vehiculo
                 if (Program.kilometrajeEscaneo >= cinturones)
-                {
+                {   // tipo de servicio en base a kilometros
                     contador = +1;
                     int cantidad = (int)(Program.kilometrajeEscaneo / cinturones);
                     contador = contador * cantidad;
@@ -58,8 +58,9 @@ namespace Proyecto2
 
             }
             else if (Program.modeloEscaneo == "SpaceX")
-            {
+            {// escaneo segun vehiculo  
                 if (Program.kilometrajeEscaneo >= navegacionHs)
+                // tipo de servicio en base a horas de vuelo
                 {
                     contador = +1;
                     int cantidad = (int)(Program.kilometrajeEscaneo / navegacionHs);
@@ -73,6 +74,7 @@ namespace Proyecto2
 
             }
 
+            // muestra en ventada de los services y test realizados
 
             realizados.Text = $"Se realizaron {contador} services";
             test_realizados.Text = "Test realizados:";
@@ -83,7 +85,7 @@ namespace Proyecto2
         }
 
         private void EscaneoResultado_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        { // ventana de comprobacion proximo escaneo
             DialogResult Resultado;
             Resultado = MessageBox.Show("Desea escanear otro vehiculo?", "escanear", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (Resultado == DialogResult.Yes)

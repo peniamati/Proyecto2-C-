@@ -2,14 +2,10 @@
 {
     partial class Eliminar
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+        
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
+        
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
@@ -128,7 +124,7 @@
         }
 
         #endregion
-
+        // componentes de la ventana eliminar
         private Label eliminar_vehiculo;
         private ComboBox selector_tipo;
         private Button boton_eliminar;

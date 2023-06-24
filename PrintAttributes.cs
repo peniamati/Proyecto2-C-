@@ -2,7 +2,7 @@
 using System.Text;
 
 public class PrintAttributes
-{
+{   // muestra los atributos en pantalla
     private readonly Dictionary<string, object> attributes = new Dictionary<string, object>();
 
     public PrintAttributes(params object[] args)

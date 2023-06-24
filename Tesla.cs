@@ -1,13 +1,13 @@
 ﻿using System;
 public class Tesla : Vehiculo
-{
+{  // instancia los vehiculos tesla, comprueba el modelo y da caracteristicas unicas 
     double kilometraje;
     int asientos;
     int autonomia;
     int service;
     string modelo; 
     string duenio;
-    // anio debe ser mayor a 2003
+    // anio debe ser mayor a la crecion de Tesla
     const int autonomiaX = 560;
     const int asientosX = 7;
     const int serviceX = 1000;
@@ -19,7 +19,7 @@ public class Tesla : Vehiculo
     const int serviceCybertruck = 3000;
 
     public Tesla(int anio, string color, double kilometraje, string duenio, string modelo) : base(anio, color)
-    {
+    { // constructor en base al modelo, se agregan los atributos autonomia, asientos, service
         this.kilometraje = kilometraje;
         this.duenio = duenio;
         this.modelo = modelo;
@@ -42,6 +42,7 @@ public class Tesla : Vehiculo
             this.service = serviceCybertruck;
         }
     }
+    // gets de la clase
     public double getKilometraje()
     {
         return this.kilometraje;
@@ -66,12 +67,14 @@ public class Tesla : Vehiculo
     {
         return this.service;
     }
+
+    // metodos de la clase Tesla
     public double calcularEnteroBateria()
-    {
+    {      // calculo de rendimiento de bateria
         return Math.Truncate(Convert.ToDouble(kilometraje / autonomia));
     }
     public double calcularPorcentajeBateria()
-    {
+    {    // calcular la cantidad de bateria 
         double numero = Math.Round(Convert.ToDouble(kilometraje / autonomia) - Math.Truncate(Convert.ToDouble(kilometraje / autonomia)), 2, MidpointRounding.ToEven);
         
         return Math.Round(numero * 100,2);

@@ -67,6 +67,7 @@
         }
 
         #endregion
+        // compnentes de la ventana mas viejo
 
         private Label label1;
         private Label mas_viejo_duenio;

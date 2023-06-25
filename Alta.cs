@@ -15,7 +15,7 @@ namespace Proyecto2
     {
         public Alta()
         {
-            // ventada centrada de alta vehiculo        
+            // Ventana centrada de alta vehiculo        
             InitializeComponent();
             this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
@@ -24,7 +24,7 @@ namespace Proyecto2
 
 
         private void button1_Click(object sender, EventArgs e)
-        {   // muestra de botones del evento seleccionar
+        {   // Muestra de botones del evento seleccionar
             boton_alta.Show();
             boton_limpiar.Show();
             anio.Show();
@@ -33,7 +33,7 @@ namespace Proyecto2
             textBox3.Show();
             string gettext = selector_tipo.SelectedItem.ToString();
 
-            // muestra de etiquetas en base al selector combox de vehiculo
+            // Muestra de etiquetas en base al selector ComboBox de vehiculo
             if (gettext == "SpaceX")
             {
                 kilometraje_horas.Text = "Horas de vuelo";
@@ -111,7 +111,7 @@ namespace Proyecto2
 
 
             string gettext = selector_tipo.SelectedItem.ToString();
-            // en base al selector se muestras las etiquetas para cada tipo de vehiculo
+            // En base al selector se muestran las etiquetas para cada tipo de vehiculo
             if (gettext == "SpaceX")
             {
                 if (selector_modelo.Items.Contains("Starship") == false)
@@ -137,9 +137,9 @@ namespace Proyecto2
         }
 
         private void boton_alta_Click(object sender, EventArgs e)
-        {   // carga de los atributos de clases en base a lo ingresado por usuario
+        {   // Carga de los atributos de clases en base a lo ingresado por el usuario
             string gettext = selector_tipo.SelectedItem.ToString();
-            // depende del selector se instacia y cargan respectivos valores
+            // Depende del selector se instacia y cargan los respectivos valores
             if (gettext == "Tesla")
             {
                 try
@@ -151,7 +151,7 @@ namespace Proyecto2
                     string modelo = selector_modelo.SelectedItem.ToString();
                     int anioInt;
                     double kilometrajeDouble;
-                    // controles de atributos y llamado de excepciones
+                    // Controles de atributos y llamado de excepciones
                     try
                     {
                         anioInt = Int32.Parse(textBox1.Text);
@@ -169,12 +169,12 @@ namespace Proyecto2
                         throw new Exception("Debe ingresar un valor númerico para el kilometraje");
                     }
 
-                    // controles de valores nulos y llamados a excepciones
+                    // Controles de valores nulos y llamados a excepciones
                     if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(duenio))
                     {
                         throw new Exception("Los campos no pueden quedar vacios");
                     }
-                    // el valor anio depende del modelo
+                    // El valor anio depende del modelo
                     if (modelo == "Modelo S" && anioInt < 2012){
                         throw new Exception("El año debe ser mayor o igual a 2012");
                     }
@@ -184,14 +184,14 @@ namespace Proyecto2
                     if (modelo == "Cybertruck" && anioInt < 2019)
                     { throw new Exception("El año debe ser mayor o igual a 2019"); }
                     
-                   // instancia de la clase tesla
+                   // Instancia de la clase Tesla
                     Tesla tesla = new Tesla(anioInt, color, kilometrajeDouble, duenio, modelo);
-                    // agrega a la lista vehiculos 
+                    // Agrega a la lista vehiculos 
                     Program.vehiculos.Add(tesla);
                     DialogResult Resultado;
-                    // confircamion de alta
+                    // Confirmacion de alta
                     Resultado = MessageBox.Show("Tesla dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    // carga o cierre de la ventana alta
+                    // Carga o cierre de la ventana alta
                     if (Resultado == DialogResult.Yes)
                     {
                         this.Close();
@@ -212,7 +212,7 @@ namespace Proyecto2
 
 
             }
-            // depende del selector se instacia y cargan respectivos valores
+            // Depende del selector se instacia y cargan los respectivos valores
             else if (gettext == "SpaceX")
             {
                 try
@@ -224,7 +224,7 @@ namespace Proyecto2
                     string modelo = selector_modelo.SelectedItem.ToString();
                     int anioInt;
                     double horasDeVueloDouble;
-                    // controles de atributos y llamado de excepciones
+                    // Controles de atributos y llamado de excepciones
                     try
                     {
                         anioInt = Int32.Parse(textBox1.Text);
@@ -241,25 +241,25 @@ namespace Proyecto2
                     {
                         throw new Exception("Debe ingresar un valor númerico para las horas de vuelo");
                     }
-                    // controles de valores nulos y llamados a excepciones
+                    // Controles de valores nulos y llamados a excepciones
                     if (string.IsNullOrEmpty(modelo) || string.IsNullOrEmpty(color) || string.IsNullOrEmpty(empresa))
                     {
                         throw new Exception("Los campos no pueden quedar vacios");
                     }
-                    // depende del anio de creacion de space x
+                    // Depende del año de creacion de Space X
                     if (anioInt < 2002)
                     {
                         throw new Exception("El año debe ser mayor o igual a 2002");
                     }
-                    // instancia de clase 
+                    // Instancia de clase 
                     SpaceX spaceX = new SpaceX(anioInt, color, horasDeVueloDouble, empresa, modelo);
-                    // se agrega a lista vehiculos
+                    // Se agrega a lista vehiculos
                     Program.vehiculos.Add(spaceX);
                     DialogResult Resultado;
 
-                    // mensaje de confirmacion
+                    // Mensaje de confirmacion
                     Resultado = MessageBox.Show("SpaceX dado de alta con exito!. \nDesea agregar otro vehiculo?", "Alta", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    // en base a lo seleccionado se da una nueva alta o cierre de ventana
+                    // En base a lo seleccionado se da una nueva alta o cierre de ventana
                     if (Resultado == DialogResult.Yes)
                     {
                         this.Close();
@@ -273,7 +273,7 @@ namespace Proyecto2
 
                 catch (Exception ex)
                 {
-                    // mensjade de error 
+                    // Mensaje de error 
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

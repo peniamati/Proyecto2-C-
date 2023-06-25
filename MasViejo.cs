@@ -19,18 +19,18 @@ namespace Proyecto2
         }
 
         private void MasViejo_Load(object sender, EventArgs e)
-            // muestra el elemento mas viejo
+            // Muestra el elemento mas viejo
         {
             int hayTesla = Program.vehiculos.Count(vehiculo => vehiculo is Tesla);
             string masViejoDuenio = "";
             bool iniciado = false;
             int anio = 0;
             foreach (Vehiculo vehiculo in Program.vehiculos)
-                // recorre la lista vehiculos y comprueba la clase 
+                // Recorre la lista vehiculos y comprueba la clase 
             {
                 if (vehiculo is Tesla)
                 {
-                    // obtiene el anio y compara con los valores de la lista
+                    // Obtiene el año y compara con los valores de la lista
                     Tesla tesla = (Tesla)vehiculo;
                     if (!iniciado) { 
                         anio = tesla.getAnio();

@@ -19,6 +19,7 @@ namespace Proyecto2
 
         public Escaneo()
         {
+            //Se inicializa la ventana centrada y se permite elegir una fila entera
             InitializeComponent();
             this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
@@ -30,6 +31,7 @@ namespace Proyecto2
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
         {
+            //Los valores mostrados dependen del tipo de vehiculo
             a_escanear.Show();
             tabla.Show();
             boton_a_escanear.Show();
@@ -95,33 +97,16 @@ namespace Proyecto2
 
         private void boton_a_escanear_Click(object sender, EventArgs e)
         {
+            //Se llama al form de EscaneoResultado evaluando que haya vehiculos y que se haya seleccionado uno
             int index;
-            try
+            if (tabla.FocusedItem != null && tabla.FocusedItem.Index != -1)
             {
-                if (Program.vehiculos.Count > 0)
-                {
-                    if (tabla.FocusedItem != null && tabla.FocusedItem.Index != -1)
-                    {
-                        index = tabla.FocusedItem.Index;
-                        Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
-                        Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);               
-                        new EscaneoResultado().Show();
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    throw new Exception("Lista vacia");
-                }
-
-
+                index = tabla.FocusedItem.Index;
+                Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
+                Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);               
+                new EscaneoResultado().Show();
+                this.Close();
             }
-            catch
-            {
-                MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-
         }
 
 

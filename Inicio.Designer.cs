@@ -39,10 +39,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(286, 277);
-            button1.Margin = new Padding(4, 5, 4, 5);
+            button1.Location = new Point(200, 166);
             button1.Name = "button1";
-            button1.Size = new Size(217, 53);
+            button1.Size = new Size(152, 32);
             button1.TabIndex = 0;
             button1.Text = "Seleccionar";
             button1.UseVisualStyleBackColor = true;
@@ -52,47 +51,44 @@
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(39, 212);
-            comboBox1.Margin = new Padding(4, 5, 4, 5);
+            comboBox1.Location = new Point(27, 127);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(706, 33);
+            comboBox1.Size = new Size(495, 23);
             comboBox1.TabIndex = 1;
-            comboBox1.Click += Form1_Load;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(172, 61);
+            label1.Location = new Point(120, 37);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(465, 25);
+            label1.Size = new Size(306, 15);
             label1.TabIndex = 2;
             label1.Text = "Bienvenido al sistema de registro de Vehiculos de SpaceX";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(271, 131);
+            label2.Location = new Point(190, 79);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(256, 25);
+            label2.Size = new Size(172, 15);
             label2.TabIndex = 3;
             label2.Text = "Para comenzar elija una opción";
-            label2.Click += label2_Click;
             // 
             // Inicio
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 360);
+            ClientSize = new Size(549, 216);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4, 5, 4, 5);
             Name = "Inicio";
             Text = "SpaceX";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

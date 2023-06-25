@@ -18,7 +18,7 @@ namespace Proyecto2
             InitializeComponent();
             this.CenterToScreen();
             foreach (var vehiculo in Program.vehiculos)
-                // muestra vehiculos de la lista segun el tipo 
+                // Muestra vehiculos de la lista segun el tipo 
             {
                 if (vehiculo is Tesla)
                 {
@@ -40,15 +40,7 @@ namespace Proyecto2
                     lista_mostrada.Columns[1].Width = -2;
                     lista_mostrada.Columns[2].Width = -2;
                 }
-
-
             }
-
-
-
         }
-
-
-
     }
 }

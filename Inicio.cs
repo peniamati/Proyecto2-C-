@@ -3,7 +3,7 @@ namespace Proyecto2
     public partial class Inicio : Form
     {
         public Inicio()
-        {   // menu de seleccion
+        {   // Menu de seleccion
             InitializeComponent();
             this.CenterToScreen();
             comboBox1.Items.Add("1. Dar de alta un Tesla y SpaceX.");
@@ -11,10 +11,10 @@ namespace Proyecto2
             comboBox1.Items.Add("3. Mostrar el Tesla mas viejo.");
             comboBox1.Items.Add("4. Escaneo de un vehículo.");
             comboBox1.Items.Add("5. Mostrar la cantidad de carga de baterías/combustible de todos los vechículos.");
-
+            button1.Hide();
         }
-        
-        // boton seleccionar
+
+        // Boton seleccionar
         private void button1_Click(object sender, EventArgs e)
         {
             string gettext = comboBox1.SelectedItem.ToString();
@@ -24,61 +24,94 @@ namespace Proyecto2
                     new Alta().Show();
                     break;
                 case "2. Eliminar un Tesla y SpaceX.":
-                    new Eliminar().Show();
+                    try
+                    {
+                        if (Program.vehiculos.Count > 0)
+                        {
+                            new Eliminar().Show();
+                        }
+                        else
+                        {
+                            throw new Exception("Lista vacia");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
                     break;
                 case "3. Mostrar el Tesla mas viejo.":
                     try
                     {
                         // Muestra la lista de mas viejos, si esta tiene valores
                         if (Program.vehiculos.Count > 0)
-                        {    // comprueba si es un telsa y es mayor a cero. 
+                        {    // Comprueba si es un Tesla y es mayor a cero. 
                             int hayTesla = Program.vehiculos.Count(vehiculo => vehiculo is Tesla);
                             if (hayTesla > 0)
                             {
                                 new MasViejo().Show();
                             }
                             else
-                            {   // excepcion por lista bacia
+                            {   // Excepcion por lista vacia
                                 MessageBox.Show("No hay teslas en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
-                        {   // excepcion por lista bacia de Program.vehiculos
+                        {   // Excepcion por lista vacia de vehiculos
                             throw new Exception("Lista vacia");
-                        }   
+                        }
                     }
                     catch
-                    {   // mensaje de lista Program.vehiculos vacia
+                    {   // Mensaje de lista vacia
                         MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
-                    } 
+                    }
                     break;
                 case "4. Escaneo de un vehículo.":
-                    
-                    new Escaneo().Show();
+                    try
+                    {
+                        if (Program.vehiculos.Count > 0)
+                        {
+                            new Escaneo().Show();
+                        }
+                        else
+                        {
+                            throw new Exception("Lista vacia");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
                     break;
                 case "5. Mostrar la cantidad de carga de baterías/combustible de todos los vechículos.":
-                    new Mostrar().Show();
+                    try
+                    {
+                        if (Program.vehiculos.Count > 0)
+                        {
+                            new Mostrar().Show();
+                        }
+                        else
+                        {
+                            throw new Exception("Lista vacia");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
                     break;
             }
 
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            button1.Show();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

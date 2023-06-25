@@ -18,6 +18,7 @@ namespace Proyecto2
             InitializeComponent();
             this.CenterToScreen();
             foreach (var vehiculo in Program.vehiculos)
+                // muestra vehiculos de la lista segun el tipo 
             {
                 if (vehiculo is Tesla)
                 {

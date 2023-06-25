@@ -18,6 +18,7 @@ namespace Proyecto2
     {
         public Eliminar()
         {
+
             InitializeComponent();
             this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
@@ -57,14 +58,18 @@ namespace Proyecto2
 
                     }
                     DialogResult Result;
+                    // mensaje de confirmacion de eliminacion del vehiculo
                     Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (Result == DialogResult.Yes)
-                    {
+                    {   
+                        // si el valor no es nulo se elinina el vehiculo
                         if (Program.aRemoverTesla is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverTesla);
                             DialogResult Resultado;
+                            // notificacion de eliminacion 
                             Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            // si no se deacea eliniar otro vehiculo se cierra la ventana 
                             if(Resultado == DialogResult.Yes)
                             {
                                 this.Close();
@@ -76,6 +81,7 @@ namespace Proyecto2
                             }
 
                         }
+                        
                         else if (Program.aRemoverSpaceX is not null)
                         {
                             Program.vehiculos.Remove(Program.aRemoverSpaceX);
@@ -95,32 +101,33 @@ namespace Proyecto2
                     }
                 }
                 else
-                {
+                {   // excepcion Program.vehiculos = 0
                     throw new Exception("Lista vacia");
                 }
             }
             catch
-            {
+            {   // Mensaje por lista vacia
                 MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
 
         private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {   // muestra de botones y tabla
             boton_seleccionar.Show();
             tabla.Hide();
             boton_eliminar.Hide();
         }
 
         private void Eliminar_Load(object sender, EventArgs e)
-        {
+        {   // muestra de botones y tabla
             boton_eliminar.Hide();
             tabla.Hide();
             boton_seleccionar.Hide();
         }
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
+            // limpieza de la tabla despues de elinimar
         {
             boton_eliminar.Show();
             tabla.Show();

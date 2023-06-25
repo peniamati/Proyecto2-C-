@@ -79,6 +79,7 @@
         }
 
         #endregion
+        // componentes de la ventana escaneo rusultados
 
         private Label escaneando;
         private Label realizados;

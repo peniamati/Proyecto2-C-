@@ -24,6 +24,11 @@ namespace Proyecto2
             selector_tipo.Items.Add("SpaceX");
             tabla.FullRowSelect = true;
         }
+        private void CloseForm()
+        {
+            // Close the form
+            this.Close();
+        }
         private void Eliminar_Load(object sender, EventArgs e)
         {   // Muestra de botones y tabla
             Program.aRemoverVehiculo.Clear();
@@ -39,22 +44,17 @@ namespace Proyecto2
         }
 
         private void boton_seleccionar_Click(object sender, EventArgs e)
-            // Limpieza de la tabla despues de eliminar
+        // Limpieza de la tabla despues de eliminar
         {
             boton_eliminar.Show();
             tabla.Show();
             string gettext = selector_tipo.SelectedItem.ToString();
-            bool limpia = false;
             if (gettext == "Tesla")
             {
-                limpia = false;
-                if (!limpia)
-                {
-                    tabla.Items.Clear();
-                    limpia = true;
-                }
+                tabla.Items.Clear();
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
+
                     if (vehiculo is Tesla)
                     {
                         Tesla tesla = (Tesla)vehiculo;
@@ -63,17 +63,17 @@ namespace Proyecto2
                         tabla.Items.Add(listViewedItem);
                     }
                 }
+                if (tabla.Items.Count > 0)
+                {
+                    tabla.Items[0].Selected = true;
+                    tabla.FocusedItem = tabla.Items[0];
+                }
             }
 
 
             else if (gettext == "SpaceX")
             {
-                limpia = false;
-                if (!limpia)
-                {
-                    tabla.Items.Clear();
-                    limpia = true;
-                }
+                tabla.Items.Clear();
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
                     if (vehiculo is SpaceX)
@@ -84,6 +84,11 @@ namespace Proyecto2
                         tabla.Items.Add(listViewedItem);
                     }
                 }
+                if (tabla.Items.Count > 0)
+                {
+                    tabla.Items[0].Selected = true;
+                    tabla.FocusedItem = tabla.Items[0];
+                }
             }
             tabla.Columns[0].Width = -2;
             tabla.Columns[1].Width = -2;
@@ -93,91 +98,101 @@ namespace Proyecto2
         }
         private void boton_eliminar_Click(object sender, EventArgs e)
         {
-            int index = tabla.FocusedItem.Index;
-            string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
-            string duenioEliminar = tabla.Items[index].SubItems[0].Text;
-            string modeloEliminar = tabla.Items[index].SubItems[1].Text;
-            List<string> itemToRemove = new List<string> { kilometrajeEliminar, duenioEliminar, modeloEliminar };
-            foreach (Vehiculo vehiculo in Program.vehiculos)
+            try
             {
-                if (vehiculo is Tesla)
+                if (tabla.Items.Count > 0)
                 {
-                    Tesla tesla = (Tesla)vehiculo;
-                    if (itemToRemove.Contains(tesla.getKilometraje().ToString()) && itemToRemove.Contains(tesla.getDuenio()) && itemToRemove.Contains(tesla.getModelo()))
+                    int index = tabla.FocusedItem.Index;
+                    string kilometrajeEliminar = tabla.Items[index].SubItems[2].Text;
+                    string duenioEliminar = tabla.Items[index].SubItems[0].Text;
+                    string modeloEliminar = tabla.Items[index].SubItems[1].Text;
+                    List<string> itemToRemove = new List<string> { kilometrajeEliminar, duenioEliminar, modeloEliminar };
+                    foreach (Vehiculo vehiculo in Program.vehiculos)
                     {
-                        Program.aRemoverVehiculo.Add(tesla);
-                        itemToRemove.Clear();
-                    }
-                }
-                if (vehiculo is SpaceX)
-                {
-                    SpaceX spaceX = (SpaceX)vehiculo;
-                    if (itemToRemove.Contains(spaceX.getHorasDeVuelo().ToString()) && itemToRemove.Contains(spaceX.getEmpresa()) && itemToRemove.Contains(spaceX.getModelo()))
-                    {
-                        Program.aRemoverVehiculo.Add(spaceX);
-                        itemToRemove.Clear();
-                    }
-                }
+                        if (vehiculo is Tesla)
+                        {
+                            Tesla tesla = (Tesla)vehiculo;
+                            if (itemToRemove.Contains(tesla.getKilometraje().ToString()) && itemToRemove.Contains(tesla.getDuenio()) && itemToRemove.Contains(tesla.getModelo()))
+                            {
+                                Program.aRemoverVehiculo.Add(tesla);
+                                itemToRemove.Clear();
+                            }
+                        }
+                        if (vehiculo is SpaceX)
+                        {
+                            SpaceX spaceX = (SpaceX)vehiculo;
+                            if (itemToRemove.Contains(spaceX.getHorasDeVuelo().ToString()) && itemToRemove.Contains(spaceX.getEmpresa()) && itemToRemove.Contains(spaceX.getModelo()))
+                            {
+                                Program.aRemoverVehiculo.Add(spaceX);
+                                itemToRemove.Clear();
+                            }
+                        }
 
+                    }
+                    DialogResult Result;
+                    // Mensaje de confirmacion de eliminacion del vehiculo
+                    Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (Result == DialogResult.Yes)
+                    {
+                        DialogResult Resultado;
+                        // Notificacion de eliminacion 
+                        // Si el valor no es nulo se elimina el vehiculo
+                        if (Program.aRemoverVehiculo[0] is Tesla)
+                        {
+                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
+
+                            Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                            if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
+                            {
+                                this.Close();
+                                new Eliminar().Show();
+                            }
+                            else if (Resultado == DialogResult.Yes && Program.vehiculos.Count == 0)
+                            {
+                                MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
+                            else
+                            {
+                                this.Close();
+                                CloseForm();
+                            }
+                        }
+                        else if (Program.aRemoverVehiculo[0] is SpaceX)
+                        {
+                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
+                            Resultado = MessageBox.Show("SpaceX eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
+                            {
+                                this.Close();
+                                new Eliminar().Show();
+                            }
+                            else if (Resultado == DialogResult.Yes && Program.vehiculos.Count == 0)
+                            {
+                                MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Close();
+                            }
+                            else
+                            {
+                                this.Close();
+                                CloseForm();
+                            }
+                        }
+                        // Si no se desea eliminar otro vehiculo se cierra la ventana 
+
+                    }
+
+                }
+                else
+                {
+                    throw new Exception("No selecciono ningun valor a eliminar");
+                }
             }
-            DialogResult Result;
-            // Mensaje de confirmacion de eliminacion del vehiculo
-            Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (Result == DialogResult.Yes)
+            catch (Exception ex)
             {
-                DialogResult Resultado;
-                // Notificacion de eliminacion 
-                // Si el valor no es nulo se elimina el vehiculo
-                if (Program.aRemoverVehiculo[0] is Tesla)
-                {
-                    Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
-                    
-                    Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    
-                    if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
-                    {
-                       
-                        this.Close();
-                        new Eliminar().Show();
-                    }
-                    else if(Resultado == DialogResult.Yes && Program.vehiculos.Count == 0){
-
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-
-                    else
-                    {
-                        this.Close();
-                    }
-                }
-                else if (Program.aRemoverVehiculo[0] is SpaceX)
-                {
-                    Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
-                    Resultado = MessageBox.Show("SpaceX eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
-                    {
-                        this.Close();
-                        new Eliminar().Show();
-                    }
-                    else if (Resultado == DialogResult.Yes && Program.vehiculos.Count == 0)
-                    {
-
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-
-                    else
-                    {
-                        this.Close();
-                    }
-                }
-                // Si no se desea eliminar otro vehiculo se cierra la ventana 
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
     }
 }
-
-

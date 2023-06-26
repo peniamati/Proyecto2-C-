@@ -131,12 +131,21 @@ namespace Proyecto2
                 if (Program.aRemoverVehiculo[0] is Tesla)
                 {
                     Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
+                    
                     Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (Resultado == DialogResult.Yes)
+                    
+                    if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
                     {
+                       
                         this.Close();
                         new Eliminar().Show();
                     }
+                    else if(Resultado == DialogResult.Yes && Program.vehiculos.Count == 0){
+
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+
                     else
                     {
                         this.Close();
@@ -146,11 +155,18 @@ namespace Proyecto2
                 {
                     Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
                     Resultado = MessageBox.Show("SpaceX eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                    if (Resultado == DialogResult.Yes)
+                    if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
                     {
                         this.Close();
                         new Eliminar().Show();
                     }
+                    else if (Resultado == DialogResult.Yes && Program.vehiculos.Count == 0)
+                    {
+
+                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+
                     else
                     {
                         this.Close();

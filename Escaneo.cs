@@ -14,12 +14,17 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Proyecto2
 {
+    /// <summary>
+    /// Clase que representa la ventana de escaneo de vehículos.
+    /// </summary>
     public partial class Escaneo : Form
     {
-
+        /// <summary>
+        /// Constructor de la clase Escaneo.
+        /// </summary>
         public Escaneo()
         {
-            //Se inicializa la ventana centrada y se permite elegir una fila entera
+            // Inicialización de la ventana
             InitializeComponent();
             this.CenterToScreen();
             selector_tipo.Items.Add("Tesla");
@@ -29,9 +34,13 @@ namespace Proyecto2
 
         }
 
+        /// <summary>
+        /// Evento que se dispara al hacer clic en el botón "Seleccionar".
+        /// Muestra la lista de vehículos disponibles para escanear.
+        /// </summary>
         private void boton_seleccionar_Click(object sender, EventArgs e)
         {
-            //Los valores mostrados dependen del tipo de vehiculo
+            // Mostrar valores dependiendo del tipo de vehículo seleccionado
             a_escanear.Show();
             tabla.Show();
             boton_a_escanear.Show();
@@ -39,6 +48,7 @@ namespace Proyecto2
             string gettext = selector_tipo.SelectedItem.ToString();
             if (gettext == "Tesla")
             {
+                // Mostrar vehículos Tesla en la tabla
                 tabla.Items.Clear();
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
@@ -58,6 +68,7 @@ namespace Proyecto2
             }
             else if (gettext == "SpaceX")
             {
+                // Mostrar vehículos SpaceX en la tabla
                 tabla.Items.Clear();
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
@@ -82,6 +93,10 @@ namespace Proyecto2
             tabla.Width = tabla.Columns[0].Width + tabla.Columns[1].Width + tabla.Columns[2].Width;
         }
 
+        /// <summary>
+        /// Evento que se dispara al cargar la ventana.
+        /// Oculta elementos de la interfaz.
+        /// </summary>
         private void Escaneo_Load(object sender, EventArgs e)
         {
             boton_seleccionar.Hide();
@@ -90,17 +105,26 @@ namespace Proyecto2
             boton_a_escanear.Hide();
         }
 
+        /// <summary>
+        /// Evento que se dispara al hacer clic en el botón "A Escanear".
+        /// Abre la ventana de resultados de escaneo si se selecciona un vehículo.
+        /// </summary>
         private void boton_a_escanear_Click(object sender, EventArgs e)
         {
-            //Se llama al form de EscaneoResultado evaluando que haya vehiculos y que se haya seleccionado uno
+            //Se llama al formulario de EscaneoResultado evaluando que haya vehiculos y que se haya seleccionado uno
             try
             {
                 if (tabla.Items.Count > 0)
                 {
+                    // Obtener el índice del vehículo seleccionado en la tabla
                     int index;
                     index = tabla.FocusedItem.Index;
+
+                    // Establecer el modelo y el kilometraje del vehículo a escanear en la clase Program
                     Program.modeloEscaneo = selector_tipo.SelectedItem.ToString();
                     Program.kilometrajeEscaneo = Convert.ToDouble(tabla.Items[index].SubItems[2].Text);
+
+                    // Abrir la ventana de resultados de escaneo y cerrar la ventana actual
                     new EscaneoResultado().Show();
                     this.Close();
                 }
@@ -115,7 +139,10 @@ namespace Proyecto2
             }
         }
 
-
+        /// <summary>
+        /// Evento que se dispara al cambiar la selección del tipo de vehículo.
+        /// Actualiza la interfaz según el tipo de vehículo seleccionado.
+        /// </summary>
         private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             boton_seleccionar.Show();

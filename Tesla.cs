@@ -1,13 +1,16 @@
 ﻿using System;
+
+/// <summary>
+/// Clase Tesla
+/// </summary>
 public class Tesla : Vehiculo
-{  // Instancia los vehiculos tesla, comprueba el modelo y da caracteristicas unicas 
+{  
     double kilometraje;
     int asientos;
     int autonomia;
     int service;
     string modelo; 
     string duenio;
-    // anio debe ser mayor a la crecion de Tesla
     const int autonomiaX = 560;
     const int asientosX = 7;
     const int serviceX = 1000;
@@ -18,11 +21,21 @@ public class Tesla : Vehiculo
     const int asientosCybertruck = 6;
     const int serviceCybertruck = 3000;
 
+    /// <summary>
+    /// Constructor de la clase Tesla.
+    /// </summary>
+    /// <param name="anio">Año del vehículo (debe ser mayor al año de creación del modelo)</param>
+    /// <param name="color">Color del vehículo</param>
+    /// <param name="kilometraje">Kilometraje del vehículo</param>
+    /// <param name="duenio">Dueño del vehículo</param>
+    /// <param name="modelo">Modelo del vehículo</param>
+
     public Tesla(int anio, string color, double kilometraje, string duenio, string modelo) : base(anio, color)
-    { // Constructor en base al modelo, se agregan los atributos autonomia, asientos, service
+    { 
         this.kilometraje = kilometraje;
         this.duenio = duenio;
         this.modelo = modelo;
+
         if (this.modelo == "Modelo X")
         {
             this.autonomia = autonomiaX;
@@ -42,43 +55,77 @@ public class Tesla : Vehiculo
             this.service = serviceCybertruck;
         }
     }
-    // Gets de la clase
+
+    /// <summary>
+    /// Obtiene el kilometraje del vehículo Tesla.
+    /// </summary>
+    /// <returns>Kilometraje del vehículo</returns>
     public double getKilometraje()
     {
         return this.kilometraje;
     }
+
+    /// <summary>
+    /// Obtiene la autonomía del vehículo Tesla.
+    /// </summary>
+    /// <returns>Autonomía del vehículo</returns>
     public int getAutonomia()
     {
         return this.autonomia;
     }
+
+    /// <summary>
+    /// Obtiene el dueño del vehículo Tesla.
+    /// </summary>
+    /// <returns>Dueño del vehículo</returns>
     public string getDuenio()
     {
         return this.duenio;
     }
+
+    /// <summary>
+    /// Obtiene el modelo del vehículo Tesla.
+    /// </summary>
+    /// <returns>Modelo del vehículo</returns>
     public string getModelo()
     {
         return this.modelo;
     }
+
+    /// <summary>
+    /// Obtiene la cantidad de asientos del vehículo Tesla.
+    /// </summary>
+    /// <returns>Cantidad de asientos del vehículo</returns>
     public int getAsientos()
     {
         return this.asientos;
     }
+
+    /// <summary>
+    /// Obtiene el servicio del vehículo Tesla.
+    /// </summary>
+    /// <returns>Servicio del vehículo</returns>
     public int getService()
     {
         return this.service;
     }
 
-    // Metodos de la clase Tesla
+    /// <summary>
+    /// Calcula la cantidad de veces que la batería ha sido recargada por completo.
+    /// </summary>
+    /// <returns>Número de veces de recarga completa de la batería</returns>
     public double calcularEnteroBateria()
-    {      // Calculo de rendimiento de bateria
+    {      
         return Math.Truncate(Convert.ToDouble(kilometraje / autonomia));
     }
+    /// <summary>
+    /// Calcula el porcentaje de carga de la batería del vehículo Tesla.
+    /// </summary>
+    /// <returns>Porcentaje de carga de la batería</returns>
     public double calcularPorcentajeBateria()
-    {    // Calcular la cantidad de bateria 
+    {   
         double numero = Math.Round(Convert.ToDouble(kilometraje / autonomia) - Math.Truncate(Convert.ToDouble(kilometraje / autonomia)), 2, MidpointRounding.ToEven);
         
         return Math.Round(numero * 100,2);
     }
-
-
 }

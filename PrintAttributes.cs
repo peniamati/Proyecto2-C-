@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Text;
 
+/// <summary>
+/// Representa un objeto que muestra los atributos en una representación de cadena.
+/// </summary>
 public class PrintAttributes
-{   // muestra los atributos en pantalla
+{   
     private readonly Dictionary<string, object> attributes = new Dictionary<string, object>();
 
+    /// <summary>
+    /// Inicializa una nueva instancia de la clase PrintAttributes con los atributos proporcionados.
+    /// </summary>
+    /// <param name="args">Los atributos a agregar.</param>
     public PrintAttributes(params object[] args)
     {
         foreach (var arg in args)
@@ -13,6 +20,10 @@ public class PrintAttributes
         }
     }
 
+    /// <summary>
+    /// Genera una representación de cadena de los atributos almacenados en el objeto PrintAttributes.
+    /// </summary>
+    /// <returns>Una representación de cadena de los atributos.</returns>
     public override string ToString()
     {
         StringBuilder builder = new StringBuilder();
@@ -23,6 +34,11 @@ public class PrintAttributes
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Crea una instancia de PrintAttributes a partir de una lista de objetos.
+    /// </summary>
+    /// <param name="list">La lista de objetos.</param>
+    /// <returns>Una nueva instancia de PrintAttributes creada a partir de la lista de objetos.</returns>
     public static PrintAttributes FromList(List<object> list)
     {
         var args = new object[list.Count];
@@ -32,6 +48,7 @@ public class PrintAttributes
         }
         return new PrintAttributes(args);
     }
+
 
     internal static object FromList(List<Vehiculo> vehiculos)
     {

@@ -14,44 +14,62 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Proyecto2
 {
+    /// <summary>
+    /// Clase del formulario Eliminar.
+    /// </summary>
     public partial class Eliminar : Form
     {
+        /// <summary>
+        /// Constructor de la clase Eliminar.
+        /// </summary>
         public Eliminar()
         {
             InitializeComponent();
             this.CenterToScreen();
-            selector_tipo.Items.Add("Tesla");
-            selector_tipo.Items.Add("SpaceX");
-            tabla.FullRowSelect = true;
+            selector_tipo.Items.Add("Tesla"); // Agrega "Tesla" al selector_tipo
+            selector_tipo.Items.Add("SpaceX"); // Agrega "SpaceX" al selector_tipo
+            tabla.FullRowSelect = true; // Establece FullRowSelect en true para seleccionar filas completas en la tabla
         }
+        /// <summary>
+        /// Cierra el formulario.
+        /// </summary>
         private void CloseForm()
         {
-            // Close the form
             this.Close();
         }
+
+        /// <summary>
+        /// Evento que se ejecuta cuando se carga el formulario Eliminar.
+        /// </summary>
         private void Eliminar_Load(object sender, EventArgs e)
-        {   // Muestra de botones y tabla
-            Program.aRemoverVehiculo.Clear();
-            boton_eliminar.Hide();
-            tabla.Hide();
-            boton_seleccionar.Hide();
-        }
-        private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
-        {   // Muestra de botones y tabla
-            boton_seleccionar.Show();
-            tabla.Hide();
-            boton_eliminar.Hide();
+        {
+            Program.aRemoverVehiculo.Clear(); // Limpia la lista aRemoverVehiculo
+            boton_eliminar.Hide(); // Oculta el botón eliminar
+            tabla.Hide(); // Oculta la tabla
+            boton_seleccionar.Hide(); // Oculta el botón seleccionar
         }
 
+        /// <summary>
+        /// Evento que se ejecuta cuando se selecciona un elemento en el selector_tipo.
+        /// </summary>
+        private void selector_tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {   
+            boton_seleccionar.Show(); // Muestra el botón seleccionar
+            tabla.Hide(); // Oculta la tabla
+            boton_eliminar.Hide(); // Oculta el botón eliminar
+        }
+
+        /// <summary>
+        /// Evento que se ejecuta cuando se hace clic en el botón seleccionar.
+        /// </summary>
         private void boton_seleccionar_Click(object sender, EventArgs e)
-        // Limpieza de la tabla despues de eliminar
         {
-            boton_eliminar.Show();
-            tabla.Show();
-            string gettext = selector_tipo.SelectedItem.ToString();
+            boton_eliminar.Show(); // Muestra el botón eliminar
+            tabla.Show();          // Muestra la tabla
+            string gettext = selector_tipo.SelectedItem.ToString(); // Obtiene el elemento seleccionado del selector_tipo
             if (gettext == "Tesla")
             {
-                tabla.Items.Clear();
+                tabla.Items.Clear();     // Limpia los elementos de la tabla
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
 
@@ -60,12 +78,12 @@ namespace Proyecto2
                         Tesla tesla = (Tesla)vehiculo;
                         string[] rows = { tesla.getDuenio(), tesla.getModelo(), tesla.getKilometraje().ToString() };
                         ListViewItem listViewedItem = new ListViewItem(rows);
-                        tabla.Items.Add(listViewedItem);
+                        tabla.Items.Add(listViewedItem); // Agrega el elemento a la tabla
                     }
                 }
                 if (tabla.Items.Count > 0)
                 {
-                    tabla.Items[0].Selected = true;
+                    tabla.Items[0].Selected = true;    // Selecciona el primer elemento de la tabla
                     tabla.FocusedItem = tabla.Items[0];
                 }
             }
@@ -73,7 +91,7 @@ namespace Proyecto2
 
             else if (gettext == "SpaceX")
             {
-                tabla.Items.Clear();
+                tabla.Items.Clear(); // Limpia los elementos de la tabla
                 foreach (Vehiculo vehiculo in Program.vehiculos)
                 {
                     if (vehiculo is SpaceX)
@@ -81,12 +99,12 @@ namespace Proyecto2
                         SpaceX spaceX = (SpaceX)vehiculo;
                         string[] rows = { spaceX.getEmpresa(), spaceX.getModelo(), spaceX.getHorasDeVuelo().ToString() };
                         ListViewItem listViewedItem = new ListViewItem(rows);
-                        tabla.Items.Add(listViewedItem);
+                        tabla.Items.Add(listViewedItem);  // Agrega el elemento a la tabla
                     }
                 }
                 if (tabla.Items.Count > 0)
                 {
-                    tabla.Items[0].Selected = true;
+                    tabla.Items[0].Selected = true;   // Selecciona el primer elemento de la tabla
                     tabla.FocusedItem = tabla.Items[0];
                 }
             }
@@ -96,6 +114,10 @@ namespace Proyecto2
             tabla.Width = tabla.Columns[0].Width + tabla.Columns[1].Width + tabla.Columns[2].Width;
 
         }
+
+        /// <summary>
+        /// Evento que se ejecuta cuando se hace clic en el botón eliminar.
+        /// </summary>
         private void boton_eliminar_Click(object sender, EventArgs e)
         {
             try
@@ -114,8 +136,8 @@ namespace Proyecto2
                             Tesla tesla = (Tesla)vehiculo;
                             if (itemToRemove.Contains(tesla.getKilometraje().ToString()) && itemToRemove.Contains(tesla.getDuenio()) && itemToRemove.Contains(tesla.getModelo()))
                             {
-                                Program.aRemoverVehiculo.Add(tesla);
-                                itemToRemove.Clear();
+                                Program.aRemoverVehiculo.Add(tesla); // Agrega el vehículo a la lista aRemoverVehiculo
+                                itemToRemove.Clear(); // Limpia la lista itemToRemove
                             }
                         }
                         if (vehiculo is SpaceX)
@@ -123,14 +145,15 @@ namespace Proyecto2
                             SpaceX spaceX = (SpaceX)vehiculo;
                             if (itemToRemove.Contains(spaceX.getHorasDeVuelo().ToString()) && itemToRemove.Contains(spaceX.getEmpresa()) && itemToRemove.Contains(spaceX.getModelo()))
                             {
-                                Program.aRemoverVehiculo.Add(spaceX);
-                                itemToRemove.Clear();
+                                Program.aRemoverVehiculo.Add(spaceX); // Agrega el vehículo a la lista aRemoverVehiculo
+                                itemToRemove.Clear(); // Limpia la lista itemToRemove
                             }
                         }
 
                     }
                     DialogResult Result;
-                    // Mensaje de confirmacion de eliminacion del vehiculo
+
+                    // Muestra un cuadro de diálogo de confirmación para eliminar el vehículo
                     Result = MessageBox.Show("Seguro que desea eliminar el vehiculo?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (Result == DialogResult.Yes)
                     {
@@ -139,7 +162,7 @@ namespace Proyecto2
                         // Si el valor no es nulo se elimina el vehiculo
                         if (Program.aRemoverVehiculo[0] is Tesla)
                         {
-                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
+                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]); // Elimina el vehículo de la lista Program.vehiculos
 
                             Resultado = MessageBox.Show("Tesla eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
@@ -161,7 +184,7 @@ namespace Proyecto2
                         }
                         else if (Program.aRemoverVehiculo[0] is SpaceX)
                         {
-                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);
+                            Program.vehiculos.Remove(Program.aRemoverVehiculo[0]);  // Elimina el vehículo de la lista Program.vehiculos
                             Resultado = MessageBox.Show("SpaceX eliminado con exito. \nDesea eliminar otro vehiculo?", "Eliminado", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                             if (Resultado == DialogResult.Yes && Program.vehiculos.Count > 0)
                             {

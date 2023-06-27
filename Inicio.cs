@@ -1,9 +1,16 @@
 namespace Proyecto2
 {
+    /// <summary>
+    /// Menu inicial del programa.
+    /// </summary>
     public partial class Inicio : Form
     {
+        /// <summary>
+        /// Constructor de la clase Inicio
+        /// </summary>
         public Inicio()
-        {   // Menu de seleccion
+        {   
+            // Menu de seleccion
             InitializeComponent();
             this.CenterToScreen();
             comboBox1.Items.Add("1. Dar de alta un Tesla y SpaceX.");
@@ -14,7 +21,9 @@ namespace Proyecto2
             button1.Hide();
         }
 
-        // Boton seleccionar
+        /// <summary>
+        /// Maneja el evento clic del botón "Seleccionar".
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
             string gettext = comboBox1.SelectedItem.ToString();
@@ -26,81 +35,87 @@ namespace Proyecto2
                 case "2. Eliminar un Tesla y SpaceX.":
                     try
                     {
+                        // Abre la ventana Eliminar si hay vehiculos.
                         if (Program.vehiculos.Count > 0)
                         {
                             new Eliminar().Show();
                         }
                         else
                         {
-                            throw new Exception("Lista vacia");
+                            throw new Exception("No hay vehículos en la lista");
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                     break;
                 case "3. Mostrar el Tesla mas viejo.":
                     try
                     {
-                        // Muestra la lista de mas viejos, si esta tiene valores
+                        // Muestra el Tesla mas viejo si hay teslas en la lista de vehiculos.
                         if (Program.vehiculos.Count > 0)
-                        {    // Comprueba si es un Tesla y es mayor a cero. 
+                        {
+                            // Comprueba si hay algún Tesla y abre la ventana MasViejo.
                             int hayTesla = Program.vehiculos.Count(vehiculo => vehiculo is Tesla);
                             if (hayTesla > 0)
                             {
                                 new MasViejo().Show();
                             }
                             else
-                            {   // Excepcion por lista vacia
+                            {   
+                                // Excepcion por ausencia de teslas en la lista.
                                 MessageBox.Show("No hay teslas en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
-                        {   // Excepcion por lista vacia de vehiculos
-                            throw new Exception("Lista vacia");
+                        {   
+                            // Mensaje de lista vacia.
+                            throw new Exception("No hay vehiculos en la lista");
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {   // Mensaje de lista vacia
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                     break;
                 case "4. Escaneo de un vehículo.":
                     try
                     {
+                        // Abre la ventana de Escaneo si hay vehículos en la lista.
                         if (Program.vehiculos.Count > 0)
                         {
                             new Escaneo().Show();
                         }
                         else
                         {
-                            throw new Exception("Lista vacia");
+                            throw new Exception("No hay vehículos en la lista.");
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                     break;
                 case "5. Mostrar la cantidad de carga de baterías/combustible de todos los vechículos.":
                     try
                     {
+                        // Abre la ventana de Mostrar si hay vehículos en la lista.
                         if (Program.vehiculos.Count > 0)
                         {
                             new Mostrar().Show();
                         }
                         else
                         {
-                            throw new Exception("Lista vacia");
+                            throw new Exception("No hay vehículos en la lista");
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("No hay vehiculos en la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                     break;
@@ -109,6 +124,9 @@ namespace Proyecto2
 
         }
 
+        /// <summary>
+        /// Maneja el evento de cambio de selección del ComboBox.
+        /// </summary>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             button1.Show();
